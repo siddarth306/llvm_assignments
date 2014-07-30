@@ -1,10 +1,28 @@
 #include <stdio.h>
+
+void foo()
+{
+    printf("hi");
+}
 int main()
 {
-    int i,x; 
+    int i,x,y,z,a; 
     printf("hello");
-    scanf("%d",&i);
-    for(x=0;x<i;x++)
-    printf("\nhi");
+    printf("BYE");
+    i=2;
+    for(x=0;x<2;x++)
+    {
+      for(y=0;y<3;y++)
+        printf("\nhi");
+       for(y=0;y<3;y++)
+        printf("\nhi");
+ 
+    }
+/*for(x=0;x<2;x++)
+    {
+    
+        for(y=0;y<3;y++)
+        printf("\nhi");
+    }*/
     printf("\nbye");
 }

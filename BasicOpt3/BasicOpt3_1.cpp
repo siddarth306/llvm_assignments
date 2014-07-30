@@ -36,7 +36,6 @@ namespace {
                         {
                            Function *F = Inst->getParent()->getParent(); 
                            printf_stat[F]+=1;;
-                           errs()<<"\nSize: "<<printf_stat[F]<<" Increment\n";
                            
                         }
                     }
