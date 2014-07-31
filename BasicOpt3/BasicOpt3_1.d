@@ -1,5 +1,5 @@
-BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
- /usr/include/stdc-predef.h /usr/include/llvm-3.4/llvm/Pass.h \
+BasicOpt3_1.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3_1.cpp \
+ /usr/include/stdc-predef.h /home/siddharth/dbuild/include/llvm/Pass.h \
  /home/siddharth/dbuild/include/llvm/Support/Compiler.h \
  /home/siddharth/dbuild/include/llvm/Config/llvm-config.h \
  /usr/include/c++/4.8/string \
@@ -129,8 +129,7 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
  /usr/include/c++/4.8/bits/stream_iterator.h /usr/include/c++/4.8/memory \
  /usr/include/c++/4.8/bits/stl_raw_storage_iter.h \
  /usr/include/c++/4.8/backward/auto_ptr.h \
- /home/siddharth/dbuild/include/llvm/Pass.h \
- /usr/include/llvm-3.4/llvm/IR/Module.h \
+ /home/siddharth/dbuild/include/llvm/IR/Module.h \
  /home/siddharth/dbuild/include/llvm/ADT/OwningPtr.h \
  /home/siddharth/dbuild/include/llvm/IR/Function.h \
  /home/siddharth/dbuild/include/llvm/IR/Argument.h \
@@ -175,10 +174,7 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
  /home/siddharth/dbuild/include/llvm/IR/OperandTraits.h \
  /home/siddharth/dbuild/include/llvm/IR/GlobalVariable.h \
  /home/siddharth/dbuild/include/llvm/IR/Metadata.h \
- /usr/include/llvm-3.4/llvm/IR/Function.h \
- /usr/include/llvm-3.4/llvm/IR/BasicBlock.h \
- /usr/include/llvm-3.4/llvm/IR/Instruction.h \
- /usr/include/llvm-3.4/llvm/Support/raw_ostream.h \
+ /home/siddharth/dbuild/include/llvm/Support/raw_ostream.h \
  /home/siddharth/dbuild/include/llvm/Support/FileSystem.h \
  /home/siddharth/dbuild/include/llvm/ADT/IntrusiveRefCntPtr.h \
  /home/siddharth/dbuild/include/llvm/ADT/SmallString.h \
@@ -191,12 +187,11 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
  /usr/include/c++/4.8/ctime /usr/include/c++/4.8/stack \
  /usr/include/c++/4.8/deque /usr/include/c++/4.8/bits/stl_deque.h \
  /usr/include/c++/4.8/bits/deque.tcc \
- /usr/include/c++/4.8/bits/stl_stack.h \
- /usr/include/llvm-3.4/llvm/IR/Use.h
+ /usr/include/c++/4.8/bits/stl_stack.h
 
 /usr/include/stdc-predef.h:
 
-/usr/include/llvm-3.4/llvm/Pass.h:
+/home/siddharth/dbuild/include/llvm/Pass.h:
 
 /home/siddharth/dbuild/include/llvm/Support/Compiler.h:
 
@@ -514,9 +509,7 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
 
 /usr/include/c++/4.8/backward/auto_ptr.h:
 
-/home/siddharth/dbuild/include/llvm/Pass.h:
-
-/usr/include/llvm-3.4/llvm/IR/Module.h:
+/home/siddharth/dbuild/include/llvm/IR/Module.h:
 
 /home/siddharth/dbuild/include/llvm/ADT/OwningPtr.h:
 
@@ -612,13 +605,7 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
 
 /home/siddharth/dbuild/include/llvm/IR/Metadata.h:
 
-/usr/include/llvm-3.4/llvm/IR/Function.h:
-
-/usr/include/llvm-3.4/llvm/IR/BasicBlock.h:
-
-/usr/include/llvm-3.4/llvm/IR/Instruction.h:
-
-/usr/include/llvm-3.4/llvm/Support/raw_ostream.h:
+/home/siddharth/dbuild/include/llvm/Support/raw_ostream.h:
 
 /home/siddharth/dbuild/include/llvm/Support/FileSystem.h:
 
@@ -655,5 +642,3 @@ BasicOpt3.o: /home/siddharth/dbuild/projects/BasicOpt3/BasicOpt3.cpp \
 /usr/include/c++/4.8/bits/deque.tcc:
 
 /usr/include/c++/4.8/bits/stl_stack.h:
-
-/usr/include/llvm-3.4/llvm/IR/Use.h:

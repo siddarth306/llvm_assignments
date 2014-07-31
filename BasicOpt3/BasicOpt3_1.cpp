@@ -1,10 +1,10 @@
-#include "../../include/llvm-3.4/llvm/Pass.h"
-#include "../../include/llvm-3.4/llvm/IR/Module.h"
-#include "../../include/llvm-3.4/llvm/IR/Function.h"
-#include "../../include/llvm-3.4/llvm/IR/BasicBlock.h"
-#include "../../include/llvm-3.4/llvm/IR/Instruction.h"
-#include "../../include/llvm-3.4/llvm/Support/raw_ostream.h"
-#include "../../include/llvm-3.4/llvm/IR/Use.h"
+#include "llvm/Pass.h"
+#include "llvm/IR/Module.h"
+#include "llvm/IR/Function.h"
+#include "llvm/IR/BasicBlock.h"
+#include "llvm/IR/Instruction.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/IR/Use.h"
 #include <map>
 //#include <StringRef.h>
 using namespace llvm;
