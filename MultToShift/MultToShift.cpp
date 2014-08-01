@@ -4,6 +4,7 @@
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/raw_ostream.h"
+#include <llvm/IR/Type.h>
 using namespace llvm;
 
 namespace {
@@ -14,10 +15,21 @@ namespace {
 
         virtual bool runOnBasicBlock(BasicBlock &BB) 
         {
+            unsigned int i;
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
-                if((*i).getOpcode() == Instruction::Mul)
-                   errs()<<"mul found"; 
+                
+                   
+                for (User::op_iterator j = (*i).op_begin(); j!= (*i).op_end(); j++)
+                 
+                {
+                      
+              
+                    if((*j)->getType()->isUnsignedIntegerType())
+                    {
+                        errs()<<"hello";
+                    }
+                } 
             }
 
               
