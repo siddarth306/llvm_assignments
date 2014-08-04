@@ -15,7 +15,7 @@ namespace {
 
         virtual bool runOnBasicBlock(BasicBlock &BB) 
         {
-            unsigned int i;
+            //unsigned int i;
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
                 
@@ -25,7 +25,7 @@ namespace {
                 {
                       
               
-                    if((*j)->getType()->isUnsignedIntegerType())
+                    if((*i).getOpcode()==Instruction::Muli && (*j)->getType()->isIntegerTy() )
                     {
                         errs()<<"hello";
                     }
