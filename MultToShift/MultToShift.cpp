@@ -5,6 +5,7 @@
 #include "llvm/IR/Instruction.h"
 #include "llvm/Support/raw_ostream.h"
 #include <llvm/IR/Type.h>
+#include <llvm/ADT/APSInt.h>
 using namespace llvm;
 
 namespace {
@@ -19,13 +20,14 @@ namespace {
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
                 
+                
                    
                 for (User::op_iterator j = (*i).op_begin(); j!= (*i).op_end(); j++)
                  
                 {
                       
               
-                    if((*i).getOpcode()==Instruction::Muli && (*j)->getType()->isIntegerTy() )
+                    if((*i).getOpcode()==Instruction::Mul &&  llvm::APSInt aps = dyn_cast<APSInt*>(*j))
                     {
                         errs()<<"hello";
                     }
