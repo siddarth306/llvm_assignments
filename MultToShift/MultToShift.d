@@ -188,7 +188,14 @@ MultToShift.o: \
  /usr/include/c++/4.8/ctime /usr/include/c++/4.8/stack \
  /usr/include/c++/4.8/deque /usr/include/c++/4.8/bits/stl_deque.h \
  /usr/include/c++/4.8/bits/deque.tcc \
- /usr/include/c++/4.8/bits/stl_stack.h
+ /usr/include/c++/4.8/bits/stl_stack.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/APSInt.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Constants.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Operator.h \
+ /home/siddharthk/dbuild/include/llvm/IR/DataLayout.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/DenseMap.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/DenseMapInfo.h \
+ /home/siddharthk/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h
 
 /usr/include/stdc-predef.h:
 
@@ -643,3 +650,17 @@ MultToShift.o: \
 /usr/include/c++/4.8/bits/deque.tcc:
 
 /usr/include/c++/4.8/bits/stl_stack.h:
+
+/home/siddharthk/dbuild/include/llvm/ADT/APSInt.h:
+
+/home/siddharthk/dbuild/include/llvm/IR/Constants.h:
+
+/home/siddharthk/dbuild/include/llvm/IR/Operator.h:
+
+/home/siddharthk/dbuild/include/llvm/IR/DataLayout.h:
+
+/home/siddharthk/dbuild/include/llvm/ADT/DenseMap.h:
+
+/home/siddharthk/dbuild/include/llvm/ADT/DenseMapInfo.h:
+
+/home/siddharthk/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h:

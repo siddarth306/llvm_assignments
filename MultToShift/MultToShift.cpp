@@ -6,6 +6,8 @@
 #include "llvm/Support/raw_ostream.h"
 #include <llvm/IR/Type.h>
 #include <llvm/ADT/APSInt.h>
+#include <llvm/IR/Constants.h>
+#include <llvm/IR/Operator.h>
 using namespace llvm;
 
 namespace {
@@ -19,23 +21,27 @@ namespace {
             //unsigned int i;
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
-                
-                
-                   
-                for (User::op_iterator j = (*i).op_begin(); j!= (*i).op_end(); j++)
-                 
+                for (unsigned int j=0; j<(*i).getNumOperands() ; j++)
                 {
-                      
-              
-                    if((*i).getOpcode()==Instruction::Mul &&  llvm::APSInt aps = dyn_cast<APSInt*>(*j))
+                    //errs()<<"hi";
+                    Value *v = (*i).getOperand(j);
+                    //errs()<<(*i).getOpcode();
+                    if((*i).getOpcode()==Instruction::Mul )
+                        if(OverflowingBinaryOperator *op = dyn_cast<OverflowingBinaryOperator>(i))
+                        {
+   
+                            errs()<<"\nnsw:"<<op->hasNoSignedWrap();
+                            errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
+                        } 
+                                   //if (op->hasNoSignedWrap() && !op->hasNoUnsignedWrap()) 
+                           //if( llvm::ConstantInt *ci =dyn_cast<llvm::ConstantInt>(v))
                     {
+
+                      
                         errs()<<"hello";
                     }
                 } 
             }
-
-              
-
              
             return false;
         }

@@ -1,0 +1,185 @@
+../../include/llvm/Analysis/ScalarEvolution.h:    /// UnsignedRanges - Memoized results from getUnsignedRange
+../../include/llvm/Analysis/ScalarEvolution.h:    DenseMap<const SCEV *, ConstantRange> UnsignedRanges;
+../../include/llvm/Analysis/ScalarEvolution.h:    /// setUnsignedRange - Set the memoized unsigned range for the given SCEV.
+../../include/llvm/Analysis/ScalarEvolution.h:    const ConstantRange &setUnsignedRange(const SCEV *S,
+../../include/llvm/Analysis/ScalarEvolution.h:        UnsignedRanges.insert(std::make_pair(S, CR));
+../../include/llvm/Analysis/ScalarEvolution.h:    /// setUnsignedRange - Set the memoized signed range for the given SCEV.
+../../include/llvm/Analysis/ScalarEvolution.h:    /// getUnsignedRange - Determine the unsigned range for a particular SCEV.
+../../include/llvm/Analysis/ScalarEvolution.h:    ConstantRange getUnsignedRange(const SCEV *S);
+../../include/llvm/Support/NoFolder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/Support/NoFolder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/Support/NoFolder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/Support/NoFolder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/Support/NoFolder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/Support/ConstantRange.h:  /// getUnsignedMax - Return the largest unsigned value contained in the
+../../include/llvm/Support/ConstantRange.h:  APInt getUnsignedMax() const;
+../../include/llvm/Support/ConstantRange.h:  /// getUnsignedMin - Return the smallest unsigned value contained in the
+../../include/llvm/Support/ConstantRange.h:  APInt getUnsignedMin() const;
+../../include/llvm/Support/DataExtractor.h:  uint64_t getUnsigned(uint32_t *offset_ptr, uint32_t byte_size) const;
+../../include/llvm/Support/DataExtractor.h:    return getUnsigned(offset_ptr, AddressSize);
+../../include/llvm/ADT/APSInt.h:  bool IsUnsigned;
+../../include/llvm/ADT/APSInt.h:  explicit APSInt() : IsUnsigned(false) {}
+../../include/llvm/ADT/APSInt.h:  explicit APSInt(uint32_t BitWidth, bool isUnsigned = true)
+../../include/llvm/ADT/APSInt.h:   : APInt(BitWidth, 0), IsUnsigned(isUnsigned) {}
+../../include/llvm/ADT/APSInt.h:  explicit APSInt(const APInt &I, bool isUnsigned = true)
+../../include/llvm/ADT/APSInt.h:   : APInt(I), IsUnsigned(isUnsigned) {}
+../../include/llvm/ADT/APSInt.h:    IsUnsigned = RHS.IsUnsigned;
+../../include/llvm/ADT/APSInt.h:  bool isSigned() const { return !IsUnsigned; }
+../../include/llvm/ADT/APSInt.h:  bool isUnsigned() const { return IsUnsigned; }
+../../include/llvm/ADT/APSInt.h:  void setIsUnsigned(bool Val) { IsUnsigned = Val; }
+../../include/llvm/ADT/APSInt.h:  void setIsSigned(bool Val) { IsUnsigned = !Val; }
+../../include/llvm/ADT/APSInt.h:    return APSInt(APInt::trunc(width), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    if (IsUnsigned)
+../../include/llvm/ADT/APSInt.h:      return APSInt(zext(width), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:      return APSInt(sext(width), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:      if (IsUnsigned)
+../../include/llvm/ADT/APSInt.h:        return APSInt(zextOrTrunc(width), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:        return APSInt(sextOrTrunc(width), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    if (IsUnsigned)
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    if (IsUnsigned)
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? APSInt(urem(RHS), true) : APSInt(srem(RHS), false);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? APSInt(udiv(RHS), true) : APSInt(sdiv(RHS), false);
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? APSInt(lshr(Amt), true) : APSInt(ashr(Amt), false);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? ult(RHS) : slt(RHS);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? ugt(RHS) : sgt(RHS);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? ule(RHS) : sle(RHS);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return IsUnsigned ? uge(RHS) : sge(RHS);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) << Bits, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    return APSInt(++static_cast<APInt&>(*this), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    return APSInt(--static_cast<APInt&>(*this), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    return APSInt(-static_cast<const APInt&>(*this), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) & RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) | RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) ^ RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) * RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) + RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    assert(IsUnsigned == RHS.IsUnsigned && "Signedness mismatch!");
+../../include/llvm/ADT/APSInt.h:    return APSInt(static_cast<const APInt&>(*this) - RHS, IsUnsigned);
+../../include/llvm/ADT/APSInt.h:    return APSInt(~static_cast<const APInt&>(*this), IsUnsigned);
+../../include/llvm/ADT/APSInt.h:  static APSInt getMaxValue(uint32_t numBits, bool Unsigned) {
+../../include/llvm/ADT/APSInt.h:    return APSInt(Unsigned ? APInt::getMaxValue(numBits)
+../../include/llvm/ADT/APSInt.h:                           : APInt::getSignedMaxValue(numBits), Unsigned);
+../../include/llvm/ADT/APSInt.h:  static APSInt getMinValue(uint32_t numBits, bool Unsigned) {
+../../include/llvm/ADT/APSInt.h:    return APSInt(Unsigned ? APInt::getMinValue(numBits)
+../../include/llvm/ADT/APSInt.h:                           : APInt::getSignedMinValue(numBits), Unsigned);
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned division operation.
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned remainder operation.
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned less than comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned less than comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned less or equal comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned less or equal comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned greather than comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned greater than comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned greater or equal comparison
+../../include/llvm/ADT/APInt.h:  /// \brief Unsigned greater or equal comparison
+../../include/llvm/ADT/APInt.h:  void toStringUnsigned(SmallVectorImpl<char> &Str, unsigned Radix = 10) const {
+../../include/llvm/ADT/APInt.h:/// \brief Unsigned division function for APInt.
+../../include/llvm/ADT/APInt.h:/// Unsigned divide APInt LHS by APInt RHS.
+../../include/llvm/ADT/APInt.h:/// Unsigned remainder operation on APInt.
+../../include/llvm/ADT/StringRef.h:  bool getAsUnsignedInteger(StringRef Str, unsigned Radix,
+../../include/llvm/ADT/StringRef.h:      if (getAsUnsignedInteger(*this, Radix, ULLVal) ||
+../../include/llvm/ADT/APFloat.h:  opStatus convertFromUnsignedParts(const integerPart *, unsigned int,
+../../include/llvm/CodeGen/ISDOpcodes.h:  /// dynamically) as 0.  "U" -> Unsigned (for integer operands) or Unordered
+../../include/llvm/CodeGen/ISDOpcodes.h:  /// isUnsignedIntSetCC - Return true if this is a setcc instruction that
+../../include/llvm/CodeGen/ISDOpcodes.h:  inline bool isUnsignedIntSetCC(CondCode Code) {
+../../include/llvm/CodeGen/ISDOpcodes.h:    CVT_FU,     /// Float from Unsigned
+../../include/llvm/CodeGen/ISDOpcodes.h:    CVT_UF,     /// Unsigned from Float
+../../include/llvm/CodeGen/ISDOpcodes.h:    CVT_SU,     /// Signed from Unsigned
+../../include/llvm/CodeGen/ISDOpcodes.h:    CVT_US,     /// Unsigned from Signed
+../../include/llvm/CodeGen/ISDOpcodes.h:    CVT_UU,     /// Unsigned from Unsigned
+../../include/llvm/CodeGen/MachineModuleInfo.h:  typedef std::pair<unsigned, DebugLoc> UnsignedDebugLocPair;
+../../include/llvm/CodeGen/MachineModuleInfo.h:  typedef SmallVector<std::pair<TrackingVH<MDNode>, UnsignedDebugLocPair>, 4>
+../../include/llvm/DebugInfo/DWARFFormValue.h:  Optional<uint64_t> getAsUnsignedConstant() const;
+../../include/llvm/DebugInfo.h:  unsigned getUnsignedField(unsigned Elt) const {
+../../include/llvm/DebugInfo.h:    return getUnsignedField(0) & ~LLVMDebugVersionMask;
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(4); }
+../../include/llvm/DebugInfo.h:  unsigned getFlags() const { return getUnsignedField(8); }
+../../include/llvm/DebugInfo.h:  unsigned getEncoding() const { return getUnsignedField(9); }
+../../include/llvm/DebugInfo.h:  unsigned getRunTimeLang() const { return getUnsignedField(11); }
+../../include/llvm/DebugInfo.h:  unsigned getLanguage() const { return getUnsignedField(2); }
+../../include/llvm/DebugInfo.h:  bool isOptimized() const { return getUnsignedField(4) != 0; }
+../../include/llvm/DebugInfo.h:  unsigned getRunTimeVersion() const { return getUnsignedField(6); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(6); }
+../../include/llvm/DebugInfo.h:  unsigned isLocalToUnit() const { return getUnsignedField(8); }
+../../include/llvm/DebugInfo.h:  unsigned isDefinition() const { return getUnsignedField(9); }
+../../include/llvm/DebugInfo.h:  unsigned getVirtuality() const { return getUnsignedField(10); }
+../../include/llvm/DebugInfo.h:  unsigned getVirtualIndex() const { return getUnsignedField(11); }
+../../include/llvm/DebugInfo.h:  unsigned getFlags() const { return getUnsignedField(13); }
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(13) & FlagArtificial) != 0;
+../../include/llvm/DebugInfo.h:  bool isPrivate() const { return (getUnsignedField(13) & FlagPrivate) != 0; }
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(13) & FlagProtected) != 0;
+../../include/llvm/DebugInfo.h:  bool isExplicit() const { return (getUnsignedField(13) & FlagExplicit) != 0; }
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(13) & FlagPrototyped) != 0;
+../../include/llvm/DebugInfo.h:  unsigned getScopeLineNumber() const { return getUnsignedField(19); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(3); }
+../../include/llvm/DebugInfo.h:  unsigned getColumnNumber() const { return getUnsignedField(4); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(4); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(5); }
+../../include/llvm/DebugInfo.h:  unsigned getColumnNumber() const { return getUnsignedField(6); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(6); }
+../../include/llvm/DebugInfo.h:  unsigned getColumnNumber() const { return getUnsignedField(7); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(7); }
+../../include/llvm/DebugInfo.h:  unsigned isLocalToUnit() const { return getUnsignedField(9); }
+../../include/llvm/DebugInfo.h:  unsigned isDefinition() const { return getUnsignedField(10); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return (getUnsignedField(4) << 8) >> 8; }
+../../include/llvm/DebugInfo.h:    unsigned L = getUnsignedField(4);
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & FlagArtificial) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & FlagObjectPointer) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & FlagIndirectVariable) != 0;
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(0); }
+../../include/llvm/DebugInfo.h:  unsigned getColumnNumber() const { return getUnsignedField(1); }
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(3); }
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_readonly) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_readwrite) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_assign) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_retain) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_copy) != 0;
+../../include/llvm/DebugInfo.h:    return (getUnsignedField(6) & dwarf::DW_APPLE_PROPERTY_nonatomic) != 0;
+../../include/llvm/DebugInfo.h:  unsigned getLineNumber() const { return getUnsignedField(3); }
+../../include/llvm/IR/Instructions.h:  Predicate getUnsignedPredicate() const {
+../../include/llvm/IR/Instructions.h:    return getUnsignedPredicate(getPredicate());
+../../include/llvm/IR/Instructions.h:  static Predicate getUnsignedPredicate(Predicate pred);
+../../include/llvm/IR/IRBuilder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/IR/IRBuilder.h:    if (HasNUW) BO->setHasNoUnsignedWrap();
+../../include/llvm/IR/InstrTypes.h:    BO->setHasNoUnsignedWrap(true);
+../../include/llvm/IR/InstrTypes.h:    BO->setHasNoUnsignedWrap(true);
+../../include/llvm/IR/InstrTypes.h:    BO->setHasNoUnsignedWrap(true);
+../../include/llvm/IR/InstrTypes.h:  /// setHasNoUnsignedWrap - Set or clear the nsw flag on this instruction,
+../../include/llvm/IR/InstrTypes.h:  void setHasNoUnsignedWrap(bool b = true);
+../../include/llvm/IR/InstrTypes.h:  /// hasNoUnsignedWrap - Determine whether the no unsigned wrap flag is set.
+../../include/llvm/IR/InstrTypes.h:  bool hasNoUnsignedWrap() const;
+../../include/llvm/IR/InstrTypes.h:  bool isUnsigned() const {
+../../include/llvm/IR/InstrTypes.h:    return isUnsigned(getPredicate());
+../../include/llvm/IR/InstrTypes.h:  static bool isUnsigned(unsigned short predicate);
+../../include/llvm/IR/Operator.h:    NoUnsignedWrap = (1 << 0),
+../../include/llvm/IR/Operator.h:  void setHasNoUnsignedWrap(bool B) {
+../../include/llvm/IR/Operator.h:      (SubclassOptionalData & ~NoUnsignedWrap) | (B * NoUnsignedWrap);
+../../include/llvm/IR/Operator.h:  /// hasNoUnsignedWrap - Test whether this operation is known to never
+../../include/llvm/IR/Operator.h:  bool hasNoUnsignedWrap() const {
+../../include/llvm/IR/Operator.h:    return SubclassOptionalData & NoUnsignedWrap;
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Unsigned Integer Convert To Floating-point
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Signed Saturating Accumulated of Unsigned Value
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Unsigned Saturating Accumulated of Signed Value
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Signed Saturating Shift Left Unsigned (Immediate)
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Unsigned Fixed-point Convert To Floating-Point (Immediate)
+../../include/llvm/IR/IntrinsicsAArch64.td:// Scalar Floating-point Convert To Unsigned Fixed-point (Immediate)
