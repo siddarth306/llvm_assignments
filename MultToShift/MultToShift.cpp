@@ -29,6 +29,10 @@ namespace {
                     if((*i).getOpcode()==Instruction::Mul )
                         if(OverflowingBinaryOperator *op = dyn_cast<OverflowingBinaryOperator>(i))
                         {
+                            if(!op->hasNoSignedWrap() && !op->hasNoUnsignedWrap() )
+                            {
+
+                            }
    
                             errs()<<"\nnsw:"<<op->hasNoSignedWrap();
                             errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
