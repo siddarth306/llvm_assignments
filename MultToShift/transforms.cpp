@@ -7,8 +7,10 @@
 #include <llvm/IR/Type.h>
 #include <llvm/ADT/APSInt.h>
 #include <llvm/IR/Constants.h>
+//#include <llvm/IR/Constant.h>
 #include <llvm/IR/Operator.h>
 #include <llvm/IR/IRBuilder.h>
+#include <vector>
 using namespace llvm;
 
 namespace {
@@ -20,7 +22,7 @@ namespace {
         virtual bool runOnBasicBlock(BasicBlock &BB) 
         {
             //unsigned int i;
-             
+            vector <Instruction> delete_instructions; 
             BasicBlock *bb = &BB; 
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
@@ -41,16 +43,20 @@ namespace {
                             {
                                 if(ConstantInt *ci = dyn_cast<ConstantInt>(v1))
                                 {
+                                    IntegerType *it = ci->getType();
                                     if(ci->getValue().isPowerOf2())
                                     {
                                         unsigned val = ci->getValue().countTrailingZeros();
-                                        APInt ap = APInt(ci->getBitWidth(), val, false);
-                                        ConstantInt ci2 = ConstantInt(ci->getType(),ap);
+                                        APInt ap = APInt(ci->getBitWidth(), val, 0);
+                                        ConstantInt *c= llvm::ConstantInt::get(ci->getType(),val,0);
+                                        //ConstantInt *c = new ConstantInt(it,ap);
+                                        Value *v = dyn_cast<Value>(c); 
+                                        //ConstantInt ci2 =   ConstantInt(it, ap);
 
                                         errs()<<"\n1st";
-
+                                        v1->replaceAllUsesWith(v);
                                 
-                                        Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
+                                    Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
                                     }
 
                                 }    
@@ -59,14 +65,33 @@ namespace {
                                     if(ci->getValue().isPowerOf2())
                                     {
 
+
                                         unsigned val = ci->getValue().countTrailingZeros();
-                                        APInt ap = APInt(sizeof(unsigned int), val, false);
-                                        Value *v = dyn_cast<Value>(ap);
+                                        APInt ap = APInt(ci->getBitWidth(), val);
+                                        ConstantInt *c= llvm::ConstantInt::get(ci->getType(),val,0);
+                                        //ConstantInt *c = new ConstantInt(it,ap);
+                                        Value *v = dyn_cast<Value>(c); 
+                                        //ConstantInt ci2 =   ConstantInt(it, ap);
+
+                                        errs()<<"\n2st";
 
                                 
+                                    //Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
+
+                                        //unsigned val = ci->getValue().countTrailingZeros();
+                                       // APInt ap = APInt(sizeof(unsigned int), val, false);
+                                        //Value *v = dyn_cast<Value>(ap);
+
+                                        
+                                          
                                         Value *temp = Builder.CreateShl(v1,v,"demo",false,false);
-
-
+                                        
+                                        v2->replaceAllUsesWith(v);
+                                                    
+                                        (*i).replaceAllUsesWith(temp);
+                                        
+                                        errs()<<"\nUses:   ";
+                                       // errs().write_escaped((*(*i).use_begin())->getName());
                                     errs()<<"\n2nd";
                                     }
                                 }
@@ -74,7 +99,7 @@ namespace {
    
                             errs()<<"\nnsw:"<<op->hasNoSignedWrap();
                             errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
-                        
+                            delete_instructions.push_back((*i)); 
                             }
                         } 
                                    //if (op->hasNoSignedWrap() && !op->hasNoUnsignedWrap()) 
