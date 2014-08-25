@@ -1,7 +1,7 @@
-transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
- /usr/include/stdc-predef.h /home/siddharth/dbuild/include/llvm/Pass.h \
- /home/siddharth/dbuild/include/llvm/Support/Compiler.h \
- /home/siddharth/dbuild/include/llvm/Config/llvm-config.h \
+transforms.o: /home/siddharthk/dbuild/projects/MultToShift/transforms.cpp \
+ /usr/include/stdc-predef.h /home/siddharthk/dbuild/include/llvm/Pass.h \
+ /home/siddharthk/dbuild/include/llvm/Support/Compiler.h \
+ /home/siddharthk/dbuild/include/llvm/Config/llvm-config.h \
  /usr/include/c++/4.8/string \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -62,13 +62,13 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/atomic_word.h \
  /usr/include/c++/4.8/bits/basic_string.tcc \
- /home/siddharth/dbuild/include/llvm/PassSupport.h \
- /home/siddharth/dbuild/include/llvm/Pass.h \
- /home/siddharth/dbuild/include/llvm/InitializePasses.h \
- /home/siddharth/dbuild/include/llvm/PassRegistry.h \
- /home/siddharth/dbuild/include/llvm/ADT/StringRef.h \
- /home/siddharth/dbuild/include/llvm/Support/type_traits.h \
- /home/siddharth/dbuild/include/llvm/Support/DataTypes.h \
+ /home/siddharthk/dbuild/include/llvm/PassSupport.h \
+ /home/siddharthk/dbuild/include/llvm/Pass.h \
+ /home/siddharthk/dbuild/include/llvm/InitializePasses.h \
+ /home/siddharthk/dbuild/include/llvm/PassRegistry.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/StringRef.h \
+ /home/siddharthk/dbuild/include/llvm/Support/type_traits.h \
+ /home/siddharthk/dbuild/include/llvm/Support/DataTypes.h \
  /usr/include/c++/4.8/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/huge_val.h \
  /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
@@ -96,21 +96,21 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
  /usr/include/c++/4.8/ext/alloc_traits.h /usr/include/c++/4.8/cassert \
  /usr/include/assert.h /usr/include/c++/4.8/cstring /usr/include/string.h \
  /usr/include/c++/4.8/limits \
- /home/siddharth/dbuild/include/llvm/Support/CBindingWrapping.h \
- /home/siddharth/dbuild/include/llvm/Support/Casting.h \
- /home/siddharth/dbuild/include/llvm-c/Core.h \
- /home/siddharth/dbuild/include/llvm/Support/Atomic.h \
- /home/siddharth/dbuild/include/llvm/Support/Valgrind.h \
+ /home/siddharthk/dbuild/include/llvm/Support/CBindingWrapping.h \
+ /home/siddharthk/dbuild/include/llvm/Support/Casting.h \
+ /home/siddharthk/dbuild/include/llvm-c/Core.h \
+ /home/siddharthk/dbuild/include/llvm/Support/Atomic.h \
+ /home/siddharthk/dbuild/include/llvm/Support/Valgrind.h \
  /usr/include/c++/4.8/vector \
  /usr/include/c++/4.8/bits/stl_uninitialized.h \
  /usr/include/c++/4.8/bits/stl_vector.h \
  /usr/include/c++/4.8/bits/stl_bvector.h \
  /usr/include/c++/4.8/bits/vector.tcc \
- /home/siddharth/dbuild/include/llvm/PassAnalysisSupport.h \
- /home/siddharth/dbuild/include/llvm/ADT/SmallVector.h \
- /home/siddharth/dbuild/include/llvm/Support/AlignOf.h \
- /home/siddharth/dbuild/include/llvm/Support/MathExtras.h \
- /home/siddharth/dbuild/include/llvm/Support/SwapByteOrder.h \
+ /home/siddharthk/dbuild/include/llvm/PassAnalysisSupport.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/SmallVector.h \
+ /home/siddharthk/dbuild/include/llvm/Support/AlignOf.h \
+ /home/siddharthk/dbuild/include/llvm/Support/MathExtras.h \
+ /home/siddharthk/dbuild/include/llvm/Support/SwapByteOrder.h \
  /usr/include/c++/4.8/iterator /usr/include/c++/4.8/ostream \
  /usr/include/c++/4.8/ios /usr/include/c++/4.8/bits/ios_base.h \
  /usr/include/c++/4.8/bits/locale_classes.h \
@@ -129,38 +129,38 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
  /usr/include/c++/4.8/bits/stream_iterator.h /usr/include/c++/4.8/memory \
  /usr/include/c++/4.8/bits/stl_raw_storage_iter.h \
  /usr/include/c++/4.8/backward/auto_ptr.h \
- /home/siddharth/dbuild/include/llvm/IR/Module.h \
- /home/siddharth/dbuild/include/llvm/ADT/OwningPtr.h \
- /home/siddharth/dbuild/include/llvm/IR/Function.h \
- /home/siddharth/dbuild/include/llvm/IR/Argument.h \
- /home/siddharth/dbuild/include/llvm/ADT/Twine.h \
- /home/siddharth/dbuild/include/llvm/Support/ErrorHandling.h \
- /home/siddharth/dbuild/include/llvm/ADT/ilist_node.h \
- /home/siddharth/dbuild/include/llvm/IR/Attributes.h \
- /home/siddharth/dbuild/include/llvm/ADT/ArrayRef.h \
- /home/siddharth/dbuild/include/llvm/ADT/None.h \
- /home/siddharth/dbuild/include/llvm/ADT/FoldingSet.h \
- /home/siddharth/dbuild/include/llvm/Support/PointerLikeTypeTraits.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Module.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/OwningPtr.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Function.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Argument.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/Twine.h \
+ /home/siddharthk/dbuild/include/llvm/Support/ErrorHandling.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/ilist_node.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Attributes.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/ArrayRef.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/None.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/FoldingSet.h \
+ /home/siddharthk/dbuild/include/llvm/Support/PointerLikeTypeTraits.h \
  /usr/include/c++/4.8/bitset /usr/include/c++/4.8/map \
  /usr/include/c++/4.8/bits/stl_tree.h /usr/include/c++/4.8/bits/stl_map.h \
  /usr/include/c++/4.8/bits/stl_multimap.h \
- /home/siddharth/dbuild/include/llvm/IR/Value.h \
- /home/siddharth/dbuild/include/llvm/IR/Use.h \
- /home/siddharth/dbuild/include/llvm/ADT/PointerIntPair.h \
- /home/siddharth/dbuild/include/llvm/IR/BasicBlock.h \
- /home/siddharth/dbuild/include/llvm/ADT/ilist.h \
- /home/siddharth/dbuild/include/llvm/IR/Instruction.h \
- /home/siddharth/dbuild/include/llvm/IR/User.h \
- /home/siddharth/dbuild/include/llvm/Support/DebugLoc.h \
- /home/siddharth/dbuild/include/llvm/IR/Instruction.def \
- /home/siddharth/dbuild/include/llvm/IR/SymbolTableListTraits.h \
- /home/siddharth/dbuild/include/llvm/IR/CallingConv.h \
- /home/siddharth/dbuild/include/llvm/IR/GlobalValue.h \
- /home/siddharth/dbuild/include/llvm/IR/Constant.h \
- /home/siddharth/dbuild/include/llvm/IR/DerivedTypes.h \
- /home/siddharth/dbuild/include/llvm/IR/Type.h \
- /home/siddharth/dbuild/include/llvm/ADT/APFloat.h \
- /home/siddharth/dbuild/include/llvm/ADT/APInt.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Value.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Use.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/PointerIntPair.h \
+ /home/siddharthk/dbuild/include/llvm/IR/BasicBlock.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/ilist.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Instruction.h \
+ /home/siddharthk/dbuild/include/llvm/IR/User.h \
+ /home/siddharthk/dbuild/include/llvm/Support/DebugLoc.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Instruction.def \
+ /home/siddharthk/dbuild/include/llvm/IR/SymbolTableListTraits.h \
+ /home/siddharthk/dbuild/include/llvm/IR/CallingConv.h \
+ /home/siddharthk/dbuild/include/llvm/IR/GlobalValue.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Constant.h \
+ /home/siddharthk/dbuild/include/llvm/IR/DerivedTypes.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Type.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/APFloat.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/APInt.h \
  /usr/include/c++/4.8/climits \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h \
@@ -170,16 +170,16 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /home/siddharth/dbuild/include/llvm/IR/GlobalAlias.h \
- /home/siddharth/dbuild/include/llvm/IR/OperandTraits.h \
- /home/siddharth/dbuild/include/llvm/IR/GlobalVariable.h \
- /home/siddharth/dbuild/include/llvm/IR/Metadata.h \
- /home/siddharth/dbuild/include/llvm/Support/raw_ostream.h \
- /home/siddharth/dbuild/include/llvm/Support/FileSystem.h \
- /home/siddharth/dbuild/include/llvm/ADT/IntrusiveRefCntPtr.h \
- /home/siddharth/dbuild/include/llvm/ADT/SmallString.h \
- /home/siddharth/dbuild/include/llvm/Support/TimeValue.h \
- /home/siddharth/dbuild/include/llvm/Support/system_error.h \
+ /home/siddharthk/dbuild/include/llvm/IR/GlobalAlias.h \
+ /home/siddharthk/dbuild/include/llvm/IR/OperandTraits.h \
+ /home/siddharthk/dbuild/include/llvm/IR/GlobalVariable.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Metadata.h \
+ /home/siddharthk/dbuild/include/llvm/Support/raw_ostream.h \
+ /home/siddharthk/dbuild/include/llvm/Support/FileSystem.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/IntrusiveRefCntPtr.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/SmallString.h \
+ /home/siddharthk/dbuild/include/llvm/Support/TimeValue.h \
+ /home/siddharthk/dbuild/include/llvm/Support/system_error.h \
  /usr/include/c++/4.8/cerrno /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
@@ -188,27 +188,27 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
  /usr/include/c++/4.8/deque /usr/include/c++/4.8/bits/stl_deque.h \
  /usr/include/c++/4.8/bits/deque.tcc \
  /usr/include/c++/4.8/bits/stl_stack.h \
- /home/siddharth/dbuild/include/llvm/ADT/APSInt.h \
- /home/siddharth/dbuild/include/llvm/IR/Constants.h \
- /home/siddharth/dbuild/include/llvm/IR/Operator.h \
- /home/siddharth/dbuild/include/llvm/IR/DataLayout.h \
- /home/siddharth/dbuild/include/llvm/ADT/DenseMap.h \
- /home/siddharth/dbuild/include/llvm/ADT/DenseMapInfo.h \
- /home/siddharth/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h \
- /home/siddharth/dbuild/include/llvm/IR/IRBuilder.h \
- /home/siddharth/dbuild/include/llvm/IR/Instructions.h \
- /home/siddharth/dbuild/include/llvm/IR/InstrTypes.h \
- /home/siddharth/dbuild/include/llvm/IR/LLVMContext.h \
- /home/siddharth/dbuild/include/llvm/Support/ConstantFolder.h \
- /home/siddharth/dbuild/include/llvm/Support/ValueHandle.h
+ /home/siddharthk/dbuild/include/llvm/ADT/APSInt.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Constants.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Operator.h \
+ /home/siddharthk/dbuild/include/llvm/IR/DataLayout.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/DenseMap.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/DenseMapInfo.h \
+ /home/siddharthk/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h \
+ /home/siddharthk/dbuild/include/llvm/IR/IRBuilder.h \
+ /home/siddharthk/dbuild/include/llvm/IR/Instructions.h \
+ /home/siddharthk/dbuild/include/llvm/IR/InstrTypes.h \
+ /home/siddharthk/dbuild/include/llvm/IR/LLVMContext.h \
+ /home/siddharthk/dbuild/include/llvm/Support/ConstantFolder.h \
+ /home/siddharthk/dbuild/include/llvm/Support/ValueHandle.h
 
 /usr/include/stdc-predef.h:
 
-/home/siddharth/dbuild/include/llvm/Pass.h:
+/home/siddharthk/dbuild/include/llvm/Pass.h:
 
-/home/siddharth/dbuild/include/llvm/Support/Compiler.h:
+/home/siddharthk/dbuild/include/llvm/Support/Compiler.h:
 
-/home/siddharth/dbuild/include/llvm/Config/llvm-config.h:
+/home/siddharthk/dbuild/include/llvm/Config/llvm-config.h:
 
 /usr/include/c++/4.8/string:
 
@@ -354,19 +354,19 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/bits/basic_string.tcc:
 
-/home/siddharth/dbuild/include/llvm/PassSupport.h:
+/home/siddharthk/dbuild/include/llvm/PassSupport.h:
 
-/home/siddharth/dbuild/include/llvm/Pass.h:
+/home/siddharthk/dbuild/include/llvm/Pass.h:
 
-/home/siddharth/dbuild/include/llvm/InitializePasses.h:
+/home/siddharthk/dbuild/include/llvm/InitializePasses.h:
 
-/home/siddharth/dbuild/include/llvm/PassRegistry.h:
+/home/siddharthk/dbuild/include/llvm/PassRegistry.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/StringRef.h:
+/home/siddharthk/dbuild/include/llvm/ADT/StringRef.h:
 
-/home/siddharth/dbuild/include/llvm/Support/type_traits.h:
+/home/siddharthk/dbuild/include/llvm/Support/type_traits.h:
 
-/home/siddharth/dbuild/include/llvm/Support/DataTypes.h:
+/home/siddharthk/dbuild/include/llvm/Support/DataTypes.h:
 
 /usr/include/c++/4.8/cmath:
 
@@ -444,15 +444,15 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/limits:
 
-/home/siddharth/dbuild/include/llvm/Support/CBindingWrapping.h:
+/home/siddharthk/dbuild/include/llvm/Support/CBindingWrapping.h:
 
-/home/siddharth/dbuild/include/llvm/Support/Casting.h:
+/home/siddharthk/dbuild/include/llvm/Support/Casting.h:
 
-/home/siddharth/dbuild/include/llvm-c/Core.h:
+/home/siddharthk/dbuild/include/llvm-c/Core.h:
 
-/home/siddharth/dbuild/include/llvm/Support/Atomic.h:
+/home/siddharthk/dbuild/include/llvm/Support/Atomic.h:
 
-/home/siddharth/dbuild/include/llvm/Support/Valgrind.h:
+/home/siddharthk/dbuild/include/llvm/Support/Valgrind.h:
 
 /usr/include/c++/4.8/vector:
 
@@ -464,15 +464,15 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/bits/vector.tcc:
 
-/home/siddharth/dbuild/include/llvm/PassAnalysisSupport.h:
+/home/siddharthk/dbuild/include/llvm/PassAnalysisSupport.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/SmallVector.h:
+/home/siddharthk/dbuild/include/llvm/ADT/SmallVector.h:
 
-/home/siddharth/dbuild/include/llvm/Support/AlignOf.h:
+/home/siddharthk/dbuild/include/llvm/Support/AlignOf.h:
 
-/home/siddharth/dbuild/include/llvm/Support/MathExtras.h:
+/home/siddharthk/dbuild/include/llvm/Support/MathExtras.h:
 
-/home/siddharth/dbuild/include/llvm/Support/SwapByteOrder.h:
+/home/siddharthk/dbuild/include/llvm/Support/SwapByteOrder.h:
 
 /usr/include/c++/4.8/iterator:
 
@@ -522,29 +522,29 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/backward/auto_ptr.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Module.h:
+/home/siddharthk/dbuild/include/llvm/IR/Module.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/OwningPtr.h:
+/home/siddharthk/dbuild/include/llvm/ADT/OwningPtr.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Function.h:
+/home/siddharthk/dbuild/include/llvm/IR/Function.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Argument.h:
+/home/siddharthk/dbuild/include/llvm/IR/Argument.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/Twine.h:
+/home/siddharthk/dbuild/include/llvm/ADT/Twine.h:
 
-/home/siddharth/dbuild/include/llvm/Support/ErrorHandling.h:
+/home/siddharthk/dbuild/include/llvm/Support/ErrorHandling.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/ilist_node.h:
+/home/siddharthk/dbuild/include/llvm/ADT/ilist_node.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Attributes.h:
+/home/siddharthk/dbuild/include/llvm/IR/Attributes.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/ArrayRef.h:
+/home/siddharthk/dbuild/include/llvm/ADT/ArrayRef.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/None.h:
+/home/siddharthk/dbuild/include/llvm/ADT/None.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/FoldingSet.h:
+/home/siddharthk/dbuild/include/llvm/ADT/FoldingSet.h:
 
-/home/siddharth/dbuild/include/llvm/Support/PointerLikeTypeTraits.h:
+/home/siddharthk/dbuild/include/llvm/Support/PointerLikeTypeTraits.h:
 
 /usr/include/c++/4.8/bitset:
 
@@ -556,39 +556,39 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/bits/stl_multimap.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Value.h:
+/home/siddharthk/dbuild/include/llvm/IR/Value.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Use.h:
+/home/siddharthk/dbuild/include/llvm/IR/Use.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/PointerIntPair.h:
+/home/siddharthk/dbuild/include/llvm/ADT/PointerIntPair.h:
 
-/home/siddharth/dbuild/include/llvm/IR/BasicBlock.h:
+/home/siddharthk/dbuild/include/llvm/IR/BasicBlock.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/ilist.h:
+/home/siddharthk/dbuild/include/llvm/ADT/ilist.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Instruction.h:
+/home/siddharthk/dbuild/include/llvm/IR/Instruction.h:
 
-/home/siddharth/dbuild/include/llvm/IR/User.h:
+/home/siddharthk/dbuild/include/llvm/IR/User.h:
 
-/home/siddharth/dbuild/include/llvm/Support/DebugLoc.h:
+/home/siddharthk/dbuild/include/llvm/Support/DebugLoc.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Instruction.def:
+/home/siddharthk/dbuild/include/llvm/IR/Instruction.def:
 
-/home/siddharth/dbuild/include/llvm/IR/SymbolTableListTraits.h:
+/home/siddharthk/dbuild/include/llvm/IR/SymbolTableListTraits.h:
 
-/home/siddharth/dbuild/include/llvm/IR/CallingConv.h:
+/home/siddharthk/dbuild/include/llvm/IR/CallingConv.h:
 
-/home/siddharth/dbuild/include/llvm/IR/GlobalValue.h:
+/home/siddharthk/dbuild/include/llvm/IR/GlobalValue.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Constant.h:
+/home/siddharthk/dbuild/include/llvm/IR/Constant.h:
 
-/home/siddharth/dbuild/include/llvm/IR/DerivedTypes.h:
+/home/siddharthk/dbuild/include/llvm/IR/DerivedTypes.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Type.h:
+/home/siddharthk/dbuild/include/llvm/IR/Type.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/APFloat.h:
+/home/siddharthk/dbuild/include/llvm/ADT/APFloat.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/APInt.h:
+/home/siddharthk/dbuild/include/llvm/ADT/APInt.h:
 
 /usr/include/c++/4.8/climits:
 
@@ -610,25 +610,25 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/home/siddharth/dbuild/include/llvm/IR/GlobalAlias.h:
+/home/siddharthk/dbuild/include/llvm/IR/GlobalAlias.h:
 
-/home/siddharth/dbuild/include/llvm/IR/OperandTraits.h:
+/home/siddharthk/dbuild/include/llvm/IR/OperandTraits.h:
 
-/home/siddharth/dbuild/include/llvm/IR/GlobalVariable.h:
+/home/siddharthk/dbuild/include/llvm/IR/GlobalVariable.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Metadata.h:
+/home/siddharthk/dbuild/include/llvm/IR/Metadata.h:
 
-/home/siddharth/dbuild/include/llvm/Support/raw_ostream.h:
+/home/siddharthk/dbuild/include/llvm/Support/raw_ostream.h:
 
-/home/siddharth/dbuild/include/llvm/Support/FileSystem.h:
+/home/siddharthk/dbuild/include/llvm/Support/FileSystem.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/IntrusiveRefCntPtr.h:
+/home/siddharthk/dbuild/include/llvm/ADT/IntrusiveRefCntPtr.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/SmallString.h:
+/home/siddharthk/dbuild/include/llvm/ADT/SmallString.h:
 
-/home/siddharth/dbuild/include/llvm/Support/TimeValue.h:
+/home/siddharthk/dbuild/include/llvm/Support/TimeValue.h:
 
-/home/siddharth/dbuild/include/llvm/Support/system_error.h:
+/home/siddharthk/dbuild/include/llvm/Support/system_error.h:
 
 /usr/include/c++/4.8/cerrno:
 
@@ -656,28 +656,28 @@ transforms.o: /home/siddharth/dbuild/projects/MultToShift/transforms.cpp \
 
 /usr/include/c++/4.8/bits/stl_stack.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/APSInt.h:
+/home/siddharthk/dbuild/include/llvm/ADT/APSInt.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Constants.h:
+/home/siddharthk/dbuild/include/llvm/IR/Constants.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Operator.h:
+/home/siddharthk/dbuild/include/llvm/IR/Operator.h:
 
-/home/siddharth/dbuild/include/llvm/IR/DataLayout.h:
+/home/siddharthk/dbuild/include/llvm/IR/DataLayout.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/DenseMap.h:
+/home/siddharthk/dbuild/include/llvm/ADT/DenseMap.h:
 
-/home/siddharth/dbuild/include/llvm/ADT/DenseMapInfo.h:
+/home/siddharthk/dbuild/include/llvm/ADT/DenseMapInfo.h:
 
-/home/siddharth/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h:
+/home/siddharthk/dbuild/include/llvm/Support/GetElementPtrTypeIterator.h:
 
-/home/siddharth/dbuild/include/llvm/IR/IRBuilder.h:
+/home/siddharthk/dbuild/include/llvm/IR/IRBuilder.h:
 
-/home/siddharth/dbuild/include/llvm/IR/Instructions.h:
+/home/siddharthk/dbuild/include/llvm/IR/Instructions.h:
 
-/home/siddharth/dbuild/include/llvm/IR/InstrTypes.h:
+/home/siddharthk/dbuild/include/llvm/IR/InstrTypes.h:
 
-/home/siddharth/dbuild/include/llvm/IR/LLVMContext.h:
+/home/siddharthk/dbuild/include/llvm/IR/LLVMContext.h:
 
-/home/siddharth/dbuild/include/llvm/Support/ConstantFolder.h:
+/home/siddharthk/dbuild/include/llvm/Support/ConstantFolder.h:
 
-/home/siddharth/dbuild/include/llvm/Support/ValueHandle.h:
+/home/siddharthk/dbuild/include/llvm/Support/ValueHandle.h:

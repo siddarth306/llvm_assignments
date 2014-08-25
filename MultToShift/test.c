@@ -2,5 +2,5 @@
 int main()
 {
      unsigned int a=1, b=4;
-         b=b*8;
+         b=b*b;
 }

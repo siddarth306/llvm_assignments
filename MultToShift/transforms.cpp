@@ -81,16 +81,20 @@ namespace {
 
                                 else
                                 {
-                                    llvm::TerminatorInst *term = BB.getTerminator();
-                                    BB.splitBasicBlock(i,BB.getName());
+                                    //errs().write_escaped((*i).getName()
+                                    //llvm::TerminatorInst *term = BB.getTerminator();
+                                    
+                                    Value *temp = Builder.CreateShl(v1,v2,(*i).getName(),false,false);
+                                    
+                                    //BasicBlock *ifend =BB.splitBasicBlock(i,"ifend");
                                     //llvm::TerminatorInst(term->getType(),term->TermOpsEnd,
-                                    BasicBlock* entry = BasicBlock::C;
+                                    //BasicBlock* entry = BasicBlock::;
 
-                                    BasicBlock* entry = BasicBlock::Create(getGlobalContext(), ("entry", gcd);
-                                          BasicBlock* ret = BasicBlock::Create(getGlobalContext(), ("return", gcd);
-                                                BasicBlock* cond_false = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
-                                                      BasicBlock* cond_true = BasicBlock::Create(getGlobalContext(), ("cond_true", gcd);
-                                                            BasicBlock* cond_false_2 = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+                                    //BasicBlock* entry = BasicBlock::Create(getGlobalContext(), ("entry", gcd);
+                                          //BasicBlock* ret = BasicBlock::Create(getGlobalContext(), ("return", gcd);
+                                                //BasicBlock* cond_false = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+                                                      //BasicBlock* cond_true = BasicBlock::Create(getGlobalContext(), ("cond_true", gcd);
+                                                            //BasicBlock* cond_false_2 = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
 
 
                                 }
