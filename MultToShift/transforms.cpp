@@ -22,7 +22,7 @@ namespace {
         virtual bool runOnBasicBlock(BasicBlock &BB) 
         {
             //unsigned int i;
-            vector <Instruction> delete_instructions; 
+            std::vector <Instruction*> delete_instructions; 
             BasicBlock *bb = &BB; 
             for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
             {
@@ -43,7 +43,6 @@ namespace {
                             {
                                 if(ConstantInt *ci = dyn_cast<ConstantInt>(v1))
                                 {
-                                    IntegerType *it = ci->getType();
                                     if(ci->getValue().isPowerOf2())
                                     {
                                         unsigned val = ci->getValue().countTrailingZeros();
@@ -55,55 +54,52 @@ namespace {
 
                                         errs()<<"\n1st";
                                         v1->replaceAllUsesWith(v);
-                                
-                                    Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
-                                    }
+                                        Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
+
+                                        (*i).replaceAllUsesWith(temp);
+ 
+                                                                        }
 
                                 }    
                                 else if(ConstantInt *ci = dyn_cast<ConstantInt>(v2))
                                 {
                                     if(ci->getValue().isPowerOf2())
                                     {
-
-
                                         unsigned val = ci->getValue().countTrailingZeros();
                                         APInt ap = APInt(ci->getBitWidth(), val);
                                         ConstantInt *c= llvm::ConstantInt::get(ci->getType(),val,0);
-                                        //ConstantInt *c = new ConstantInt(it,ap);
                                         Value *v = dyn_cast<Value>(c); 
-                                        //ConstantInt ci2 =   ConstantInt(it, ap);
 
                                         errs()<<"\n2st";
-
-                                
-                                    //Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
-
-                                        //unsigned val = ci->getValue().countTrailingZeros();
-                                       // APInt ap = APInt(sizeof(unsigned int), val, false);
-                                        //Value *v = dyn_cast<Value>(ap);
-
-                                        
-                                          
                                         Value *temp = Builder.CreateShl(v1,v,"demo",false,false);
-                                        
                                         v2->replaceAllUsesWith(v);
-                                                    
                                         (*i).replaceAllUsesWith(temp);
-                                        
                                         errs()<<"\nUses:   ";
-                                       // errs().write_escaped((*(*i).use_begin())->getName());
-                                    errs()<<"\n2nd";
+                                        errs()<<"\n2nd";
                                     }
                                 }
+
+                                else
+                                {
+                                    llvm::TerminatorInst *term = BB.getTerminator();
+                                    BB.splitBasicBlock(i,BB.getName());
+                                    //llvm::TerminatorInst(term->getType(),term->TermOpsEnd,
+                                    BasicBlock* entry = BasicBlock::C;
+
+                                    BasicBlock* entry = BasicBlock::Create(getGlobalContext(), ("entry", gcd);
+                                          BasicBlock* ret = BasicBlock::Create(getGlobalContext(), ("return", gcd);
+                                                BasicBlock* cond_false = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+                                                      BasicBlock* cond_true = BasicBlock::Create(getGlobalContext(), ("cond_true", gcd);
+                                                            BasicBlock* cond_false_2 = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+
+
+                                }
                           
-   
                             errs()<<"\nnsw:"<<op->hasNoSignedWrap();
                             errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
-                            delete_instructions.push_back((*i)); 
+                            delete_instructions.push_back((i)); 
                             }
                         } 
-                                   //if (op->hasNoSignedWrap() && !op->hasNoUnsignedWrap()) 
-                           //if( llvm::ConstantInt *ci =dyn_cast<llvm::ConstantInt>(v))
             }
              
             return false;
