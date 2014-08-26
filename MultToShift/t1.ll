@@ -11,7 +11,6 @@ entry:
   store i32 4, i32* %b, align 4
   %0 = load i32* %b, align 4
   %1 = load i32* %b, align 4
-  %mul1 = shl i32 %0, %1
   %val0MinusOne = sub i32 %0, 1
   %val1MinusOne = sub i32 %1, 1
   %isval0PowerOfTwo = and i32 %0, %val0MinusOne
@@ -20,6 +19,9 @@ entry:
   br label %ifstart
 
 ifstart:                                          ; preds = %entry
+  br label %elsestart
+
+elsestart:                                        ; preds = %ifstart
   %mul = mul i32 %0, %1
   store i32 %mul, i32* %b, align 4
   ret i32 0

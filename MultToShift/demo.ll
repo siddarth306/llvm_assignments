@@ -18,21 +18,8 @@ if.then:                                          ; preds = %entry
   br label %if.end
 
 if.end:                                           ; preds = %if.then, %entry
-  %1 = load i32* %a, align 4
-  %cmp1 = icmp eq i32 %1, 10
-  br i1 %cmp1, label %if.then2, label %if.else
-
-if.then2:                                         ; preds = %if.end
-  store i32 2, i32* %a, align 4
-  br label %if.end3
-
-if.else:                                          ; preds = %if.end
-  store i32 3, i32* %a, align 4
-  br label %if.end3
-
-if.end3:                                          ; preds = %if.else, %if.then2
-  %2 = load i32* %retval
-  ret i32 %2
+  %1 = load i32* %retval
+  ret i32 %1
 }
 
 attributes #0 = { nounwind uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }

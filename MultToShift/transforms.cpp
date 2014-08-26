@@ -111,7 +111,6 @@ namespace {
                 Value *v1 = (*iv)->getOperand(0);
                 Value *v2 = (*iv)->getOperand(1);
 
-                Value *temp = Builder.CreateShl(v1,v2,(*iv)->getName(),false,false);
                 unsigned int one = 1;
                 Constant *constantOne = llvm::ConstantInt::get(v1->getType(),one,"constantOne"); 
                 Constant *consantZero = llvm::ConstantInt::get(v1->getType(),one-1,"constantZero");
@@ -120,8 +119,15 @@ namespace {
                 Value *sub_val2 = Builder.CreateSub(v2,constantOne,"val1MinusOne",0,0);
                 Value *and_val0 = Builder.CreateAnd(v1,sub_val,"isval0PowerOfTwo");
                 Value *and_val1 = Builder.CreateAnd(v2,sub_val2,"isval1PowerOfTwo");
-                Value *cmp = Builder.CreateICmpEQ(and_val0,consantZero);
+
+                Value *cmp = Builder.CreateICmpEQ(and_val0,consantZero);i
+                
+                Value *t = Builder.CreateCondBr(cmp,
                 BasicBlock *bsplit = (*iv)->getParent()->splitBasicBlock((*iv),"ifstart");
+                BasicBlock *bsplit2 = (*bsplit).splitBasicBlock((*iv),"elsestart");
+
+//Value *temp = Builder.CreateShl(v1,v2,(*iv)->getName(),false,false);
+
 
 
 
