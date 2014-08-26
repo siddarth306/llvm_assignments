@@ -14,31 +14,32 @@
 using namespace llvm;
 
 namespace {
-    struct MultToShift : public BasicBlockPass {
+    struct MultToShift : public FunctionPass {
         static char ID;
-    
-        MultToShift() : BasicBlockPass(ID) {}
 
-        virtual bool runOnBasicBlock(BasicBlock &BB) 
+        MultToShift() : FunctionPass(ID) {}
+
+        virtual bool runOnFunction(Function &F) 
         {
             //unsigned int i;
-            std::vector <Instruction*> delete_instructions; 
-            BasicBlock *bb = &BB; 
-            for(BasicBlock::iterator i=BB.begin(); i!=BB.end(); i++)
-            {
-               
-                    //errs()<<"hi";
-                    //errs()<<(*i).getOpcode();
+            std::vector <Instruction*> deleteInstructions; 
+            std::vector <Instruction*> addIfStatements;
+
+            for(Function::iterator f=F.begin(); f!=F.end(); f++)
+            { 
+
+                for(BasicBlock::iterator i=f->begin(); i!=f->end(); i++)
+                {
+
+
                     if((*i).getOpcode()==Instruction::Mul )
+                    {
                         if(OverflowingBinaryOperator *op = dyn_cast<OverflowingBinaryOperator>(i))
                         {
-                            
-                            static IRBuilder<> Builder(i);
-                            
-                             Value *v1 = (*i).getOperand(0);
-                   
-                             Value *v2 = (*i).getOperand(1);
 
+                            static IRBuilder<> Builder(i);
+                            Value *v1 = (*i).getOperand(0);
+                            Value *v2 = (*i).getOperand(1);
                             if(!op->hasNoSignedWrap() && !op->hasNoUnsignedWrap() )
                             {
                                 if(ConstantInt *ci = dyn_cast<ConstantInt>(v1))
@@ -57,8 +58,7 @@ namespace {
                                         Value *temp = Builder.CreateShl(v2,v,"demo",false,false);
 
                                         (*i).replaceAllUsesWith(temp);
- 
-                                                                        }
+                                    }
 
                                 }    
                                 else if(ConstantInt *ci = dyn_cast<ConstantInt>(v2))
@@ -69,46 +69,67 @@ namespace {
                                         APInt ap = APInt(ci->getBitWidth(), val);
                                         ConstantInt *c= llvm::ConstantInt::get(ci->getType(),val,0);
                                         Value *v = dyn_cast<Value>(c); 
-
-                                        errs()<<"\n2st";
                                         Value *temp = Builder.CreateShl(v1,v,"demo",false,false);
                                         v2->replaceAllUsesWith(v);
                                         (*i).replaceAllUsesWith(temp);
-                                        errs()<<"\nUses:   ";
-                                        errs()<<"\n2nd";
                                     }
                                 }
 
                                 else
                                 {
-                                    //errs().write_escaped((*i).getName()
-                                    //llvm::TerminatorInst *term = BB.getTerminator();
-                                    
-                                    Value *temp = Builder.CreateShl(v1,v2,(*i).getName(),false,false);
-                                    
-                                    //BasicBlock *ifend =BB.splitBasicBlock(i,"ifend");
+                                    addIfStatements.push_back(i);
+
+
+
+                                    //BasicBlock *ifend =f->splitBasicBlock(i,"ifend");
                                     //llvm::TerminatorInst(term->getType(),term->TermOpsEnd,
                                     //BasicBlock* entry = BasicBlock::;
 
                                     //BasicBlock* entry = BasicBlock::Create(getGlobalContext(), ("entry", gcd);
-                                          //BasicBlock* ret = BasicBlock::Create(getGlobalContext(), ("return", gcd);
-                                                //BasicBlock* cond_false = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
-                                                      //BasicBlock* cond_true = BasicBlock::Create(getGlobalContext(), ("cond_true", gcd);
-                                                            //BasicBlock* cond_false_2 = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+                                    //BasicBlock* ret = BasicBlock::Create(getGlobalContext(), ("return", gcd);
+                                    //BasicBlock* cond_false = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
+                                    //BasicBlock* cond_true = BasicBlock::Create(getGlobalContext(), ("cond_true", gcd);
+                                    //BasicBlock* cond_false_2 = BasicBlock::Create(getGlobalContext(), ("cond_false", gcd);
 
 
                                 }
-                          
-                            errs()<<"\nnsw:"<<op->hasNoSignedWrap();
-                            errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
-                            delete_instructions.push_back((i)); 
+
+                                errs()<<"\nnsw:"<<op->hasNoSignedWrap();
+                                errs()<<"\nnuw:"<<op->hasNoUnsignedWrap();
+                                deleteInstructions.push_back((i)); 
                             }
-                        } 
+                        }
+                    } 
+                }
+
+
             }
-             
+            for(std::vector<Instruction*>::iterator iv = addIfStatements.begin(); iv!=addIfStatements.end(); iv++)
+            {
+                static IRBuilder<> Builder((*iv));
+
+                Value *v1 = (*iv)->getOperand(0);
+                Value *v2 = (*iv)->getOperand(1);
+
+                Value *temp = Builder.CreateShl(v1,v2,(*iv)->getName(),false,false);
+                unsigned int one = 1;
+                Constant *constantOne = llvm::ConstantInt::get(v1->getType(),one,"constantOne"); 
+                Constant *consantZero = llvm::ConstantInt::get(v1->getType(),one-1,"constantZero");
+                Value *sub_val = Builder.CreateSub(v1,constantOne,"val0MinusOne",0,0);
+
+                Value *sub_val2 = Builder.CreateSub(v2,constantOne,"val1MinusOne",0,0);
+                Value *and_val0 = Builder.CreateAnd(v1,sub_val,"isval0PowerOfTwo");
+                Value *and_val1 = Builder.CreateAnd(v2,sub_val2,"isval1PowerOfTwo");
+                Value *cmp = Builder.CreateICmpEQ(and_val0,consantZero);
+                BasicBlock *bsplit = (*iv)->getParent()->splitBasicBlock((*iv),"ifstart");
+
+
+
+
+            }
+
             return false;
         }
-
     };
 }
 char MultToShift::ID = 0;

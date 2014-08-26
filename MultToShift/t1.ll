@@ -12,6 +12,14 @@ entry:
   %0 = load i32* %b, align 4
   %1 = load i32* %b, align 4
   %mul1 = shl i32 %0, %1
+  %val0MinusOne = sub i32 %0, 1
+  %val1MinusOne = sub i32 %1, 1
+  %isval0PowerOfTwo = and i32 %0, %val0MinusOne
+  %isval1PowerOfTwo = and i32 %1, %val1MinusOne
+  %2 = icmp eq i32 %isval0PowerOfTwo, 0
+  br label %ifstart
+
+ifstart:                                          ; preds = %entry
   %mul = mul i32 %0, %1
   store i32 %mul, i32* %b, align 4
   ret i32 0
