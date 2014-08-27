@@ -19,9 +19,6 @@ entry:
   br label %ifstart
 
 ifstart:                                          ; preds = %entry
-  br label %elsestart
-
-elsestart:                                        ; preds = %ifstart
   %mul = mul i32 %0, %1
   store i32 %mul, i32* %b, align 4
   ret i32 0

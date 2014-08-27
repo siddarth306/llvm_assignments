@@ -78,7 +78,7 @@ namespace {
                                 else
                                 {
                                     addIfStatements.push_back(i);
-
+                                    
 
 
                                     //BasicBlock *ifend =f->splitBasicBlock(i,"ifend");
@@ -115,16 +115,27 @@ namespace {
                 Constant *constantOne = llvm::ConstantInt::get(v1->getType(),one,"constantOne"); 
                 Constant *consantZero = llvm::ConstantInt::get(v1->getType(),one-1,"constantZero");
                 Value *sub_val = Builder.CreateSub(v1,constantOne,"val0MinusOne",0,0);
-
+                
+                Value *vconst = dyn_cast<Value>(consantZero); 
                 Value *sub_val2 = Builder.CreateSub(v2,constantOne,"val1MinusOne",0,0);
                 Value *and_val0 = Builder.CreateAnd(v1,sub_val,"isval0PowerOfTwo");
                 Value *and_val1 = Builder.CreateAnd(v2,sub_val2,"isval1PowerOfTwo");
-
-                Value *cmp = Builder.CreateICmpEQ(and_val0,consantZero);i
                 
-                Value *t = Builder.CreateCondBr(cmp,
+                //BasicBlock *bsplit2 = (*bsplit).splitBasicBlock((*iv),"elsestart");
+
+                Value *cmp = Builder.CreateICmpEQ(and_val0,vconst);
+                
                 BasicBlock *bsplit = (*iv)->getParent()->splitBasicBlock((*iv),"ifstart");
-                BasicBlock *bsplit2 = (*bsplit).splitBasicBlock((*iv),"elsestart");
+//                BasicBlock *iftrue = llvm::BasicBlock::Create(llvm::getGlobalContext(),"iftrue",(*iv)->getParent()->getParent(),bsplit);
+ //               BasicBlock *iffalse = llvm::BasicBlock::Create(llvm::getGlobalContext(),"ifalse",(*iv)->getParent()->getParent(),bsplit);
+
+  //              IRBuilder<> ifBlockBuilder((iftrue)),ifFalseBlockBuilder((iffalse));
+                
+   //             Value *temp = Builder.CreateShl(v1,v2,"demo",false,false);
+                
+
+                //Value *temp2 = Builder.CreateMul(v1,v2,"demo",false,false);
+    //            Value *t = Builder.CreateCondBr(cmp,iftrue,iffalse);
 
 //Value *temp = Builder.CreateShl(v1,v2,(*iv)->getName(),false,false);
 
