@@ -1,0 +1,20 @@
+#include <list>
+#include <vector>
+#include "basic_ir.h"
+//#include "./basic_ir.cpp"
+using namespace std;
+class BasicBlock
+{
+    list<Instruction> instructions;
+    int size;
+    vector<BasicBlock&> successors;
+    vector<BasicBlock&> predecessors;
+    public:
+    BasicBlock(vector<BasicBlock&> &preds, vector<BasicBlock*> &succ);    
+    
+    list <Instruction>::iterator begin();
+    list<Instruction>::iterator end();
+    BasicBlock* getParent();
+
+};
+

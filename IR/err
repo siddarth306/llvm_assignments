@@ -1,0 +1,18 @@
+basic_ir.cpp:112:1: error: prototype for 'Instruction::Instruction(instruction_type, const Operands&, const std::vector<Operands>&, BasicBlock*)' does not match any in class 'Instruction'
+ Instruction::Instruction (instruction_type instruct_opcode, const Operands &i_dest, const vector<Operands> &i_srcs,BasicBlock* inst_parent)
+ ^
+basic_ir.h:37:7: error: candidates are: Instruction::Instruction(const Instruction&)
+ class Instruction
+       ^
+basic_ir.h:46:2: error:                 Instruction::Instruction()
+  Instruction();
+  ^
+basic_ir.h:45:2: error:                 Instruction::Instruction(instruction_type, const Operands&, const std::vector<Operands>&, BasicBlock&)
+  Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock &inst_parent);
+  ^
+basic_ir.cpp:409:77: error: invalid use of incomplete type 'class BasicBlock'
+ BasicBlock::BasicBlock(vector<BasicBlock&> &preds, vector<BasicBlock&> &succ)
+                                                                             ^
+basic_ir.h:12:7: error: forward declaration of 'class BasicBlock'
+ class BasicBlock;
+       ^
