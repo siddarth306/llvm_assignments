@@ -111,17 +111,22 @@ namespace {
                                     Builder.SetInsertPoint(iffalse);
                                     Value *temp2 = Builder.CreateShl(v1,v2,(*i).getName(),false,false);
                                     Value *br2 = Builder.CreateBr(bsplit);
-                                    
+                                    static IRBuilder<> build(bsplit);
+
                                     Builder.SetInsertPoint(bsplit);
+                                     
                                     phi->addIncoming(temp,iftrue);
                                     phi->addIncoming(temp2,iffalse);
+                                    
+                                    Value *temp4 = Builder.CreateShl(v1,v2,(*i).getName(),false,false);
+                                    Value *temp3 = build.CreateShl(v1,v2,(*i).getName(),false,false);
                                     (*i).replaceAllUsesWith(phi);
 /*
  
                                     //Value *temp2 = Builder.CreateMul(v1,v2,"demo",false,false);
                                */
                                     }
-//                                (*i).removeFromParent();
+                                (*i).removeFromParent();
                             }
                         }
                     } 
