@@ -200,7 +200,10 @@ transforms.o: /home/siddharthk/dbuild/projects/MultToShift/transforms.cpp \
  /home/siddharthk/dbuild/include/llvm/IR/InstrTypes.h \
  /home/siddharthk/dbuild/include/llvm/IR/LLVMContext.h \
  /home/siddharthk/dbuild/include/llvm/Support/ConstantFolder.h \
- /home/siddharthk/dbuild/include/llvm/Support/ValueHandle.h
+ /home/siddharthk/dbuild/include/llvm/Support/ValueHandle.h \
+ /home/siddharthk/dbuild/include/llvm/Transforms/Utils/BasicBlockUtils.h \
+ /home/siddharthk/dbuild/include/llvm/Support/CFG.h \
+ /home/siddharthk/dbuild/include/llvm/ADT/GraphTraits.h
 
 /usr/include/stdc-predef.h:
 
@@ -681,3 +684,9 @@ transforms.o: /home/siddharthk/dbuild/projects/MultToShift/transforms.cpp \
 /home/siddharthk/dbuild/include/llvm/Support/ConstantFolder.h:
 
 /home/siddharthk/dbuild/include/llvm/Support/ValueHandle.h:
+
+/home/siddharthk/dbuild/include/llvm/Transforms/Utils/BasicBlockUtils.h:
+
+/home/siddharthk/dbuild/include/llvm/Support/CFG.h:
+
+/home/siddharthk/dbuild/include/llvm/ADT/GraphTraits.h:
