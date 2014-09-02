@@ -304,7 +304,7 @@ void program::createDFA()
             BasicBlock *bnew = new BasicBlock(codeBlocks.size());
             codeBlocks.push_back(bnew); 
         }
-        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination(),(*i).getsrc(),(*codeBlocks.end()));
+        Instruction *inew = new Instruction();
    
      (*codeBlocks.end())->insertInstruction(inew);
 
