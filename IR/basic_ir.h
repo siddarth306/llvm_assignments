@@ -48,10 +48,10 @@ class Instruction
 	instruction_type opcode;
 	Operands destination;
 	std::vector<Operands> srcs;
-    list<BasicBlock*>::iterator Parent; 
+    BasicBlock *Parent; 
 public:
     list<BasicBlock*>::iterator getParent();	
-	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock*>::iterator inst_parent);
+	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock *inst_parent);
 	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs);
 
     Instruction();
@@ -59,12 +59,13 @@ public:
 	vector<Operands>::iterator get_srcs_head();
 	instruction_type get_opcode();
 
+    vector<Operands>& getsrc();
 	void set_destination(Operands temp);
 	void set_srcs(int size, vector<Operands>::iterator &it_begin);
 	void set_opcode(instruction_type temp);
 
 	void print_instruction();
-	void changeParent(list<BasicBlock*>::iterator newParent);	
+	void changeParent(BasicBlock *newParent);	
 
 };
 

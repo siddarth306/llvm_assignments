@@ -9,10 +9,10 @@ class Instruction;
 class BasicBlock
 {
     unsigned int Id;
-    list<Instruction> instructions;
+    list<Instruction*> instructions;
     int size;
-    vector<BasicBlock> successors;
-    vector<BasicBlock> predecessors;
+    vector<BasicBlock*> successors;
+    vector<BasicBlock*> predecessors;
     Instruction *terminator;
     
     public:
@@ -20,12 +20,12 @@ class BasicBlock
     void setTerminator(Instruction*);
     BasicBlock(unsigned int blockId);    
     void printBlock();
-    list <Instruction>::iterator bb_begin();
-    list<Instruction>::iterator bb_end();
+    list <Instruction*>::iterator bb_begin();
+    list<Instruction*>::iterator bb_end();
     BasicBlock* getParent();
-    void insertInstruction(const Instruction &inst);
+    void insertInstruction(Instruction *inst);
     void deleteInstruction(int i);
-    Instruction getInstruction(int i);
+    Instruction* getInstruction(int i);
     unsigned int get_size();
     unsigned int getID(){return Id;}
 };
