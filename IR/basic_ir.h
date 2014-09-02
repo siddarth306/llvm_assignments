@@ -48,11 +48,13 @@ class Instruction
 	instruction_type opcode;
 	Operands destination;
 	std::vector<Operands> srcs;
-    list<BasicBlock>::iterator Parent; 
+    list<BasicBlock*>::iterator Parent; 
 public:
-    list<BasicBlock>::iterator getParent();	
-	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock>::iterator inst_parent);
-	Instruction();
+    list<BasicBlock*>::iterator getParent();	
+	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock*>::iterator inst_parent);
+	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs);
+
+    Instruction();
 	Operands get_destination();
 	vector<Operands>::iterator get_srcs_head();
 	instruction_type get_opcode();
@@ -62,24 +64,25 @@ public:
 	void set_opcode(instruction_type temp);
 
 	void print_instruction();
-	void changeParent(list<BasicBlock>::iterator newParent);	
+	void changeParent(list<BasicBlock*>::iterator newParent);	
 
 };
 
 
 class program
 {
-
-	list<BasicBlock> codeBlocks;
+    list<Instruction> src_program;
+	list<BasicBlock*> codeBlocks;
 	
 public:
-	list<BasicBlock>::iterator get_begin();
-	list<BasicBlock>::iterator get_end();
+	list<BasicBlock*>::iterator get_begin();
+	list<BasicBlock*>::iterator get_end();
 
-	void addBlock (const BasicBlock &newBlock);
+    void addsrcInstruction(const Instruction &inst);
+	void addBlock (BasicBlock *newBlock);
 	int get_size();
 	void deleteBlock(int i);
-	BasicBlock getBlock(int i);
+	BasicBlock* getBlock(int i);
 	void print_program ();
     void createDFA();		
 };

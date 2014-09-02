@@ -9,7 +9,7 @@
 using namespace std;
 BasicBlock demio(1);
 
-string global_opcodes[] = {"ld","st","mov","add","sub","mul","div","cmp","jmp" };
+string global_opcodes[] = {"ld","st","mov","add","sub","mul","div","jmp","cmp" };
 //std::vector<> v;
 std::vector<string> symbol_table;
 int src_size[8] = {1,1,1,2,2,2,2,2};
@@ -108,15 +108,27 @@ void Operands::print_destination ()
     if (type == address)
         cout<<" "<<symbol_table[value];
 }
-Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock>::iterator inst_parent)
+Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock*>::iterator inst_parent)
 {
     opcode = instruct_opcode;
     destination = i_dest;
     srcs = i_srcs;
     Parent = inst_parent;
 
-    
+
 }
+
+Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs)
+{
+    opcode = instruct_opcode;
+    destination = i_dest;
+    srcs = i_srcs;
+//    Parent = inst_parent;
+
+
+}
+
+
 
 Instruction::Instruction(){}
 
@@ -165,14 +177,14 @@ void Instruction::print_instruction ()
         srcs[i].print_operand();
 }
 
-void Instruction::changeParent(list<BasicBlock>::iterator newParent)
+void Instruction::changeParent(list<BasicBlock*>::iterator newParent)
 {
     Parent = newParent;
 }
 
 BasicBlock::BasicBlock(unsigned int Id)
 {
-   this->Id = Id; 
+    this->Id = Id; 
 }
 void BasicBlock::setTerminator(Instruction *terminate)
 {
@@ -182,27 +194,25 @@ void BasicBlock::setTerminator(Instruction *terminate)
 
 list<Instruction>::iterator BasicBlock::bb_end ()
 {
-    return instructions.begin();
+    return instructions.end();
 }
 
 
 list<Instruction>::iterator BasicBlock::bb_begin ()
 {
-    return instructions.end();
+    return instructions.begin();
 }
 
 void BasicBlock::insertInstruction(const Instruction &new_instruction)
 {
-    cout<<"Size:"<<instructions.size();
     instructions.push_back(new_instruction);
 }
 
 void BasicBlock::printBlock ()
 {
-    cout<<"block size:"<<instructions.size();
+    cout<<"\nBlock number:"<<Id;
     for (list<Instruction>::iterator i = instructions.begin(); i != instructions.end(); ++i)
     {
-        cout<<"\nhy";
         i->print_instruction();
     }
 }
@@ -226,31 +236,29 @@ Instruction BasicBlock::getInstruction(int i)
 }
 
 
-list<BasicBlock>::iterator program::get_begin ()
+list<BasicBlock*>::iterator program::get_begin ()
 {
     return codeBlocks.begin();
 }
 
 
-list<BasicBlock>::iterator program::get_end ()
+list<BasicBlock*>::iterator program::get_end ()
 {
     return codeBlocks.end();
 }
 
-void program::addBlock (const BasicBlock &newBlock)
-    
+void program::addBlock (BasicBlock *newBlock)
+
 {
     codeBlocks.push_back(newBlock);
 }
 
 void program::print_program ()
 {
-    cout<<"size:"<<codeBlocks.size();
-    for (list<BasicBlock>::iterator i = codeBlocks.begin(); i != codeBlocks.end(); ++i)
+    for (list<BasicBlock*>::iterator i = codeBlocks.begin(); i != codeBlocks.end(); ++i)
     {
-       cout<<"\nprinting block:"; 
-        i->printBlock();
-        
+        (*i)->printBlock();
+
     }
 }
 
@@ -260,33 +268,42 @@ int program::get_size()
 }
 void program::deleteBlock(int i)
 {
-    list<BasicBlock>::iterator it = codeBlocks.begin();
+    list<BasicBlock*>::iterator it = codeBlocks.begin();
     advance(it,i);
     codeBlocks.erase(it);
 }
-
-BasicBlock program::getBlock(int i)
+void program::addsrcInstruction(const Instruction &inst)
 {
-    list<BasicBlock>::iterator it = codeBlocks.begin();
+    this->src_program.push_back(inst);
+}
+BasicBlock* program::getBlock(int i)
+{
+    list<BasicBlock*>::iterator it = codeBlocks.begin();
     advance(it,i);
     return *it;
 }
 
 void program::createDFA()
 {
-    list<BasicBlock>::iterator first_block = codeBlocks.begin();
-    for(list<Instruction>::iterator i= first_block->bb_begin(); i!= first_block->bb_end();i++)
+    list<BasicBlock*>::iterator first_block = codeBlocks.begin();
+    cout<<"\n\n\nSize:"<<(*first_block)->get_size();
+    BasicBlock *binit = new BasicBlock(codeBlocks.size());
+    codeBlocks.push_back(binit); 
+    for(list<Instruction>::iterator i= src_program.begin(); i!= src_program.end();i++)
     {
-
         
+        cout<<"\nOpcode:"<<(*i).get_opcode();        
         if((*i).get_opcode()== jmp)
         {
-            BasicBlock bnew(codeBlocks.size());
+            cout<<"hello";
+
+            BasicBlock *bnew = new BasicBlock(codeBlocks.size());
             codeBlocks.push_back(bnew); 
         }
-        
-              
+
+        (*codeBlocks.end())
         i->changeParent((codeBlocks.end()));
 
     }
 }
+

@@ -14,7 +14,9 @@ class BasicBlock
     vector<BasicBlock> successors;
     vector<BasicBlock> predecessors;
     Instruction *terminator;
+    
     public:
+    
     void setTerminator(Instruction*);
     BasicBlock(unsigned int blockId);    
     void printBlock();

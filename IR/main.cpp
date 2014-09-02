@@ -30,7 +30,7 @@ int main()
    // vector<BasicBlock> *pred_ptr,*succ_ptr;
    // *pred_ptr = pred;
    // *succ_ptr = succ;
-    BasicBlock bb(0);
+    BasicBlock *bb = new BasicBlock(0);
     // BasicBlock bb(pred_ptr,succ_ptr);	
     cout<<"\nBasic bblock size:"<<p.get_size();
     
@@ -38,31 +38,32 @@ int main()
     
  //   BasicBlock *bptr;
   //  *bptr = p.getBlock(0);
-    Instruction i(ld,r1,y1,p.get_begin());
-    Instruction i1(ld,r5,y1,p.get_begin());
-    Instruction i2(mov,r2,x1,p.get_begin());
-    Instruction i3(mov,r3,x2,p.get_begin());
-    Instruction i8(mov,r3,y1,p.get_begin());
-    Instruction i4(mov,r4,x3,p.get_begin());
-    Instruction i5(mov,r6,x5,p.get_begin());
-    Instruction i6(add,r7,x7,p.get_begin());
-    Instruction i7(add,r7,x8,p.get_begin());
-
-    p.get_begin()->insertInstruction(i);
-    p.get_begin()->insertInstruction(i1);
-    p.get_begin()->insertInstruction(i2);
-    p.get_begin()->insertInstruction(i3);
-    //p.get_begin()->insertInstruction(i8);
-    p.get_begin()->insertInstruction(i4);
-    p.get_begin()->insertInstruction(i5);
-    p.get_begin()->insertInstruction(i7);
-    p.get_begin()->insertInstruction(i6);	
+    Instruction i(ld,r1,y1);
+    Instruction i1(ld,r5,y1);
+    Instruction i2(mov,r2,x1);
+    Instruction i3(mov,r3,x2);
+    Instruction i8(mov,r3,y1);
+    Instruction i4(jmp,r4,x3);
+    Instruction i5(mov,r6,x5);
+    Instruction i6(add,r7,x7);
+    Instruction i7(add,r7,x8);
+   
+    p.addsrcInstruction(i);
+    p.addsrcInstruction(i1);
+    p.addsrcInstruction(i2);
+    p.addsrcInstruction(i3);
+    //p.get_begin()->addsrcInstruction(i8);
+    p.addsrcInstruction(i4);
+    p.addsrcInstruction(i5);
+    p.addsrcInstruction(i7);
+    p.addsrcInstruction(i6);	
     
-    cout<<"prog size:"<<p.getBlock(0).get_size();
-    cout<<"bb size:"<<bb.get_size();
+    cout<<"prog size:"<<p.getBlock(0)->get_size();
+    cout<<"bb size:"<<bb->get_size();
     cout<<"3 address code:\n";
-    p.print_program();
     p.createDFA();
+    cout<<"Number of blocks: "<<p.get_size();
+    p.print_program();
     /* ssa s1(p);
     s1.convert_to_ssa();
     s1.print_ssa_program();
