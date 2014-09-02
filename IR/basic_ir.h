@@ -10,7 +10,7 @@
 //#include "Function.h"
 using namespace std;
 class BasicBlock;
-enum instruction_type { ld,st,mov,add,sub,mul,div };
+enum instruction_type { ld,st,mov,add,sub,mul,div,jmp,cmp };
 
 enum operand_type { immediate, registr, address,labl };
 
@@ -48,12 +48,11 @@ class Instruction
 	instruction_type opcode;
 	Operands destination;
 	std::vector<Operands> srcs;
-    BasicBlock* Parent; 
+    list<BasicBlock>::iterator Parent; 
 public:
-    BasicBlock* getParent();	
-	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock* inst_parent);
+    list<BasicBlock>::iterator getParent();	
+	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock>::iterator inst_parent);
 	Instruction();
-    
 	Operands get_destination();
 	vector<Operands>::iterator get_srcs_head();
 	instruction_type get_opcode();
@@ -63,25 +62,26 @@ public:
 	void set_opcode(instruction_type temp);
 
 	void print_instruction();
-		
+	void changeParent(list<BasicBlock>::iterator newParent);	
 
 };
 
 
 class program
 {
-	list<Instruction> code;
+
+	list<BasicBlock> codeBlocks;
 	
 public:
-	list<Instruction>::iterator get_begin();
-	list<Instruction>::iterator get_end();
+	list<BasicBlock>::iterator get_begin();
+	list<BasicBlock>::iterator get_end();
 
-	void add_instruction (const Instruction &new_instruction);
+	void addBlock (const BasicBlock &newBlock);
 	int get_size();
-	void delete_instruction(int i);
-	Instruction get_instruction(int i);
+	void deleteBlock(int i);
+	BasicBlock getBlock(int i);
 	void print_program ();
-		
+    void createDFA();		
 };
 
 

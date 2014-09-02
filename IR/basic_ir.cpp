@@ -7,12 +7,12 @@
 #include "./BasicBlock.h"
 //#include "./Function.h"
 using namespace std;
-
+BasicBlock demio(1);
 
 string global_opcodes[] = {"ld","st","mov","add","sub","mul","div","cmp","jmp" };
 //std::vector<> v;
 std::vector<string> symbol_table;
-int src_size[7] = {1,1,1,2,2,2,2};
+int src_size[8] = {1,1,1,2,2,2,2,2};
 
 struct reg_opt_entry
 {
@@ -108,12 +108,13 @@ void Operands::print_destination ()
     if (type == address)
         cout<<" "<<symbol_table[value];
 }
-Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock* inst_parent)
+Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,list<BasicBlock>::iterator inst_parent)
 {
     opcode = instruct_opcode;
     destination = i_dest;
     srcs = i_srcs;
     Parent = inst_parent;
+
     
 }
 
@@ -160,256 +161,132 @@ void Instruction::print_instruction ()
     cout<<"\n"<<name;
 
     destination.print_destination();
-    for (int i = 0; i < srcs.size(); ++i)
+    for (unsigned int i = 0; i < srcs.size(); ++i)
         srcs[i].print_operand();
 }
 
-
-list<Instruction>::iterator program::get_begin ()
+void Instruction::changeParent(list<BasicBlock>::iterator newParent)
 {
-    return code.begin();
+    Parent = newParent;
 }
 
-
-list<Instruction>::iterator program::get_end ()
+BasicBlock::BasicBlock(unsigned int Id)
 {
-    return code.end();
-}
-
-void program::add_instruction (const Instruction &new_instruction)
-{
-    code.push_back(new_instruction);
-}
-
-void program::print_program ()
-{
-    for (list<Instruction>::iterator i = code.begin(); i != code.end(); ++i)
-        i->print_instruction();
-
-}
-
-int program::get_size()
-{
-    return code.size();
-}
-void program::delete_instruction(int i)
-{
-    list<Instruction>::iterator it = code.begin();
-    advance(it,i);
-    code.erase(it);
-}
-
-Instruction program::get_instruction(int i)
-{
-    list<Instruction>::iterator it = code.begin();
-    advance(it,i);
-    return *it;
-}
-ssa::ssa (program &p)
-{
-
-    start = p.get_begin();
-    end = p.get_end();
-
-}
-
-
-/*
-   Algorithm for ssa
-
-   maintain a counter
-   check if destination register exists inregister table
-   If it doesn't, then add the register number and assign it with counter value
-
-   If it does then assign it with counter value
-   Increment counter 
-   */
-
-void ssa::convert_to_ssa ()						//Updates register table 
-{
-
-    int counter=0;
-
-    for (list <Instruction>::iterator i= start; i != end; ++i)     
-    {
-
-        Operands temp_destination = i->get_destination();
-
-        std::vector<Operands> temp_srcs;
-        for (vector<Operands>::iterator x= i->get_srcs_head(); x != i->get_srcs_head()+ src_size[i->get_opcode()]; ++x)
-        {
-            Operands temp_operand;
-            temp_operand.set_type(x->get_type());
-            if (x->get_type() == registr)											
-            {
-
-
-                temp_operand.set_value(register_table[x->get_value()]);
-            }
-            else
-                temp_operand.set_value(x->get_value());
-            temp_srcs.push_back(temp_operand);
-
-
-        }	 
-
-        if (temp_destination.get_type() == registr )
-        {
-            register_table[temp_destination.get_value()] = counter++;
-            temp_destination.set_value(counter-1);
-        }
-        Instruction pseudo_instruction2(i->get_opcode(), temp_destination, temp_srcs,NULL);
-        ssa_format.add_instruction(pseudo_instruction2);
-        cout<<"\n";
-
-    }
-}
-
-
-void ssa::print_ssa_program ()
-{
-    cout<<"ssa_format:\n";
-    ssa_format.print_program();
-}
-
-
-
-
-void ssa::optimize_ssa()
-{
-    std::vector<reg_opt_entry> register_opt_table ;
-    int counter = 0,opcode,j;
-    std::vector<Operands>::iterator src_head;
-    int size2 = ssa_format.get_size();
-    set<int> deleted_elements;
-    int de=0;
-    /*for (int hello = 0; hello < size2; ++hello)
-      {
-      deleted_elements.push_back(false);
-      }*/
-
-
-    reg_opt_entry table_entry;
-    for (list<Instruction>::iterator it = ssa_format.get_begin(); it != ssa_format.get_end(); ++it)
-    {
-
-        opcode = it->get_opcode();
-
-        if(opcode == mov)
-        {
-
-            src_head = it->get_srcs_head();
-
-            if (src_head->get_type() == registr && it->get_destination().get_type() == registr)
-            {
-                table_entry.src = it->get_srcs_head()->get_value();
-                table_entry.dest = it->get_destination().get_value();
-                table_entry.inst_no = counter;
-                //table_entry.deleted = false;
-
-                for (j = register_opt_table.size()-1; j>=0; --j)
-                {
-                    if(register_opt_table[j].dest == table_entry.src)
-                    {
-                        table_entry.value = register_opt_table[j].value;
-                        break;
-                    }
-                }
-                if(j < 0)
-                    table_entry.value = table_entry.src;
-                register_opt_table.push_back(table_entry);
-
-            }
-
-            else
-            {
-                Operands op_dest = it->get_destination();
-
-                for (int l = 0 ; l <= register_opt_table.size(); ++l)
-                    if (register_opt_table[l].dest == op_dest.get_value())
-                        register_opt_table[l].value = register_opt_table[l].dest;
-            }
-        }
-
-        else if (opcode == add || opcode == sub || opcode == mul || opcode == div)
-        {
-
-            int latest_value;
-
-            for (int k = 0; k < 2; ++k)
-            {
-                Operands op = *(it->get_srcs_head() +k);
-
-                if (op.get_type() == registr)
-                {
-                    for (int i = register_opt_table.size()-1; i >=0 ; --i)
-                        if (register_opt_table[i].dest == op.get_value())
-                        {
-                            latest_value = register_opt_table[i].value;
-                            break;
-                        }
-
-
-
-
-
-                    for (int l = register_opt_table.size() ; l >= 0; --l)
-                    {
-                        if (register_opt_table[l].dest == op.get_value() && register_opt_table[l].value == latest_value)
-                        {
-                            //register_opt_table[l].deleted = true;
-                            //cout<<"\nDelete instruction: "<<l<<endl;
-                            //ssa_format.delete_instruction(register_opt_table[l].inst_no-de);
-                            //de++;
-                            deleted_elements.insert(register_opt_table[l].inst_no);
-                            op.set_value(register_opt_table[l].src);
-                            (it->get_srcs_head()+k)->set_value(register_opt_table[l].value);
-
-                            //deleted_elements[counter] = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        else if(opcode = ld)
-        {
-            Operands op_dest = it->get_destination();
-
-            for (int l = 0 ; l <= register_opt_table.size(); ++l)
-            {
-                if (register_opt_table[l].dest == op_dest.get_value())
-                {
-                    register_opt_table[l].value = register_opt_table[l].dest;
-                }
-
-            }
-        }
-        ++counter;
-    }
-
-    cout<<endl;
-    set<int>::iterator i ;
-    while (!deleted_elements.empty())
-    {
-
-
-        i = deleted_elements.begin();
-        cout<<"\n"<<*i; 
-        ssa_format.delete_instruction(*i-de);
-        deleted_elements.erase(i);
-        de++;
-
-    }
-
-    //ssa_format.delete_instruction(*(deleted_elements.end())-de);
-}
-
-BasicBlock::BasicBlock(char *blkName)
-{
-   name = blkName; 
+   this->Id = Id; 
 }
 void BasicBlock::setTerminator(Instruction *terminate)
 {
     terminator = terminate;
+}
+
+
+list<Instruction>::iterator BasicBlock::bb_end ()
+{
+    return instructions.begin();
+}
+
+
+list<Instruction>::iterator BasicBlock::bb_begin ()
+{
+    return instructions.end();
+}
+
+void BasicBlock::insertInstruction(const Instruction &new_instruction)
+{
+    cout<<"Size:"<<instructions.size();
+    instructions.push_back(new_instruction);
+}
+
+void BasicBlock::printBlock ()
+{
+    cout<<"block size:"<<instructions.size();
+    for (list<Instruction>::iterator i = instructions.begin(); i != instructions.end(); ++i)
+    {
+        cout<<"\nhy";
+        i->print_instruction();
+    }
+}
+
+unsigned int BasicBlock::get_size()
+{
+    return instructions.size();
+}
+void BasicBlock::deleteInstruction(int i)
+{
+    list<Instruction>::iterator it = instructions.begin();
+    advance(it,i);
+    instructions.erase(it);
+}
+
+Instruction BasicBlock::getInstruction(int i)
+{
+    list<Instruction>::iterator it = instructions.begin();
+    advance(it,i);
+    return *it;
+}
+
+
+list<BasicBlock>::iterator program::get_begin ()
+{
+    return codeBlocks.begin();
+}
+
+
+list<BasicBlock>::iterator program::get_end ()
+{
+    return codeBlocks.end();
+}
+
+void program::addBlock (const BasicBlock &newBlock)
+    
+{
+    codeBlocks.push_back(newBlock);
+}
+
+void program::print_program ()
+{
+    cout<<"size:"<<codeBlocks.size();
+    for (list<BasicBlock>::iterator i = codeBlocks.begin(); i != codeBlocks.end(); ++i)
+    {
+       cout<<"\nprinting block:"; 
+        i->printBlock();
+        
+    }
+}
+
+int program::get_size()
+{
+    return codeBlocks.size();
+}
+void program::deleteBlock(int i)
+{
+    list<BasicBlock>::iterator it = codeBlocks.begin();
+    advance(it,i);
+    codeBlocks.erase(it);
+}
+
+BasicBlock program::getBlock(int i)
+{
+    list<BasicBlock>::iterator it = codeBlocks.begin();
+    advance(it,i);
+    return *it;
+}
+
+void program::createDFA()
+{
+    list<BasicBlock>::iterator first_block = codeBlocks.begin();
+    for(list<Instruction>::iterator i= first_block->bb_begin(); i!= first_block->bb_end();i++)
+    {
+
+        
+        if((*i).get_opcode()== jmp)
+        {
+            BasicBlock bnew(codeBlocks.size());
+            codeBlocks.push_back(bnew); 
+        }
+        
+              
+        i->changeParent((codeBlocks.end()));
+
+    }
 }

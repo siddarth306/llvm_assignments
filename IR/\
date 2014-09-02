@@ -1,14 +1,13 @@
 #include <list>
 #include <vector>
 #include <string>
-#include <iostream>
 //#include "basic_ir.h"
 //#include "./basic_ir.cpp"
 using namespace std;
 class Instruction;
 class BasicBlock
 {
-    unsigned int Id;
+    const string *name;
     list<Instruction> instructions;
     int size;
     vector<BasicBlock> successors;
@@ -16,7 +15,7 @@ class BasicBlock
     Instruction *terminator;
     public:
     void setTerminator(Instruction*);
-    BasicBlock(unsigned int blockId);    
+    BasicBlock(char* name);    
     void printBlock();
     list <Instruction>::iterator bb_begin();
     list<Instruction>::iterator bb_end();
@@ -25,6 +24,6 @@ class BasicBlock
     void deleteInstruction(int i);
     Instruction getInstruction(int i);
     unsigned int get_size();
-    unsigned int getID(){return Id;}
+    void getName(){cout<<name;}
 };
 
