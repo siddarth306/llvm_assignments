@@ -4,7 +4,7 @@
 #include <list>
 #include <vector>
 #include <set>
-//#include "./BasicBlock.h"
+#include "./BasicBlock.h"
 //#include "./Function.h"
 using namespace std;
 
@@ -108,13 +108,13 @@ void Operands::print_destination ()
     if (type == address)
         cout<<" "<<symbol_table[value];
 }
-
-Instruction::Instruction (instruction_type instruct_opcode, const Operands &i_dest, const vector<Operands> &i_srcs,BasicBlock* inst_parent)
+Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock* inst_parent)
 {
     opcode = instruct_opcode;
     destination = i_dest;
     srcs = i_srcs;
     Parent = inst_parent;
+    
 }
 
 Instruction::Instruction(){}
@@ -225,7 +225,7 @@ ssa::ssa (program &p)
    Increment counter 
    */
 
-/*void ssa::convert_to_ssa ()						//Updates register table 
+void ssa::convert_to_ssa ()						//Updates register table 
 {
 
     int counter=0;
@@ -258,13 +258,12 @@ ssa::ssa (program &p)
             register_table[temp_destination.get_value()] = counter++;
             temp_destination.set_value(counter-1);
         }
-
-        Instruction pseudo_instruction2(i->get_opcode(), temp_destination, temp_srcs);
+        Instruction pseudo_instruction2(i->get_opcode(), temp_destination, temp_srcs,NULL);
         ssa_format.add_instruction(pseudo_instruction2);
         cout<<"\n";
 
     }
-}*/
+}
 
 
 void ssa::print_ssa_program ()
@@ -406,8 +405,11 @@ void ssa::optimize_ssa()
     //ssa_format.delete_instruction(*(deleted_elements.end())-de);
 }
 
-BasicBlock::BasicBlock(vector<BasicBlock&> &preds, vector<BasicBlock&> &succ)
+BasicBlock::BasicBlock(char *blkName)
 {
-    predecessors= preds;
-    successors = succ;
+   name = blkName; 
+}
+void BasicBlock::setTerminator(Instruction *terminate)
+{
+    terminator = terminate;
 }

@@ -12,8 +12,17 @@ using namespace std;
 class BasicBlock;
 enum instruction_type { ld,st,mov,add,sub,mul,div };
 
-enum operand_type { immediate, registr, address };
+enum operand_type { immediate, registr, address,labl };
 
+class label
+{
+    const string &labelName;
+    int index;
+    public:
+    label();
+    void getLabelName();
+    int getLabelIndex();
+};
 class Operands
 {	
 	operand_type type;
@@ -23,7 +32,7 @@ public:
 	Operands();
 	Operands(operand_type op_type, int op_value);		
 	Operands(operand_type op_type, const string &op_value);							
-
+    Operands(operand_type op_type, label l1, label l2);
 	operand_type get_type();
 	int get_value();
 
@@ -42,9 +51,9 @@ class Instruction
     BasicBlock* Parent; 
 public:
     BasicBlock* getParent();	
-	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock &inst_parent);
+	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock* inst_parent);
 	Instruction();
-
+    
 	Operands get_destination();
 	vector<Operands>::iterator get_srcs_head();
 	instruction_type get_opcode();
