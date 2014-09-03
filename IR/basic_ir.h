@@ -53,7 +53,7 @@ public:
     list<BasicBlock*>::iterator getParent();	
 	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,BasicBlock *inst_parent);
 	Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs);
-
+    Instruction(instruction_type instruct_opcode, const  Operands &i_dest);
     Instruction();
 	Operands get_destination();
 	vector<Operands>::iterator get_srcs_head();

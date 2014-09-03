@@ -128,7 +128,11 @@ Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_des
 
 }
 
-
+Instruction::Instruction(instruction_type instruct_opcode,const Operands &i_dest)
+{
+    opcode = instruct_opcode;
+    destination = i_dest;
+}
 
 Instruction::Instruction(){}
 
@@ -252,6 +256,10 @@ list<BasicBlock*>::iterator program::get_end ()
     return codeBlocks.end();
 }
 
+void BasicBlock::printhello()
+{
+    cout<<"hi";
+}
 void program::addBlock (BasicBlock *newBlock)
 
 {
@@ -290,8 +298,9 @@ BasicBlock* program::getBlock(int i)
 
 void program::createDFA()
 {
-    list<BasicBlock*>::iterator first_block = codeBlocks.begin();
-    cout<<"\n\n\nSize:"<<(*first_block)->get_size();
+   // list<BasicBlock*>::iterator first_block = codeBlocks.begin();
+    cout<<"\n\n Basic block size:"<<codeBlocks.size();
+    //cout<<"\n\n\nSize:"<<(*first_block)->get_size();
     BasicBlock *binit = new BasicBlock(codeBlocks.size());
     codeBlocks.push_back(binit); 
     for(list<Instruction>::iterator i= src_program.begin(); i!= src_program.end();i++)
@@ -304,10 +313,12 @@ void program::createDFA()
             BasicBlock *bnew = new BasicBlock(codeBlocks.size());
             codeBlocks.push_back(bnew); 
         }
-        Instruction *inew = new Instruction();
+        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination());
    
-     (*codeBlocks.end())->insertInstruction(inew);
-
+        list<BasicBlock*>::iterator lastBlock = codeBlocks.end();
+        lastBlock--; 
+        (*lastBlock)->insertInstruction(inew);
+        //(*codeBlocks.end())->printhello();
         //(*codeBlocks.end())
         //i->changeParent((codeBlocks.end()));
 

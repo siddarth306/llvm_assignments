@@ -26,18 +26,9 @@ int main()
     x8.push_back(r6);
     x8.push_back(r6);
 
-    vector<BasicBlock> pred,succ;
-   // vector<BasicBlock> *pred_ptr,*succ_ptr;
-   // *pred_ptr = pred;
-   // *succ_ptr = succ;
-    BasicBlock *bb = new BasicBlock(0);
-    // BasicBlock bb(pred_ptr,succ_ptr);	
-    cout<<"\nBasic bblock size:"<<p.get_size();
+   // vector<BasicBlock> pred,succ;
+   // cout<<"\nBasic bblock size:"<<p.get_size();
     
-    p.addBlock(bb);
-    
- //   BasicBlock *bptr;
-  //  *bptr = p.getBlock(0);
     Instruction i(ld,r1,y1);
     Instruction i1(ld,r5,y1);
     Instruction i2(mov,r2,x1);
@@ -58,11 +49,10 @@ int main()
     p.addsrcInstruction(i7);
     p.addsrcInstruction(i6);	
     
-    cout<<"prog size:"<<p.getBlock(0)->get_size();
-    cout<<"bb size:"<<bb->get_size();
-    cout<<"3 address code:\n";
+   // cout<<"prog size:"<<p.getBlock(0)->get_size();
+cout<<"3 address code:\n";
     p.createDFA();
-    cout<<"Number of blocks: "<<p.get_size();
+    //cout<<"Number of blocks: "<<p.get_size();
     p.print_program();
     /* ssa s1(p);
     s1.convert_to_ssa();

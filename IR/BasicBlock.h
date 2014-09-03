@@ -28,5 +28,6 @@ class BasicBlock
     Instruction* getInstruction(int i);
     unsigned int get_size();
     unsigned int getID(){return Id;}
+    void printhello();
 };
 
