@@ -4,7 +4,7 @@
 int main()
 {
 
-    string s1("label1");
+    string s1("label");
     program p;
     Operands o1(immediate,2);
     Operands r1(registr,1);		
@@ -38,10 +38,10 @@ int main()
     Instruction i1(ld,r5,y1);
     Instruction i2(mov,r2,x1);
     Instruction i3(mov,r3,x2);
-    label l1("label1");
-    Instruction i4(jmp,r4,x3,"label1");
+    label l1("label");
+    Instruction i4(jmp,r4,x3);
     Instruction i5(mov,r6,x5);
-    Instruction i6(add,r7,x7);
+    Instruction i6(sub,r7,x7,"label");
     Instruction i7(add,r7,x8);
    
     p.addsrcInstruction(i);
@@ -51,8 +51,8 @@ int main()
     //p.get_begin()->addsrcInstruction(i8);
     p.addsrcInstruction(i4);
     p.addsrcInstruction(i5);
-    p.addsrcInstruction(i7);
-    p.addsrcInstruction(i6);	
+    p.addsrcInstruction(i6);
+    p.addsrcInstruction(i7);	
     
    // cout<<"prog size:"<<p.getBlock(0)->get_size();
 cout<<"3 address code:\n";

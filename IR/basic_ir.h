@@ -11,7 +11,7 @@
 //#include "Function.h"
 using namespace std;
 class BasicBlock;
-enum instruction_type { ld,st,mov,add,sub,mul,div,jmp,cmp };
+enum instruction_type { ld,st,mov,add,sub,mul,division,jmp,cmp };
 
 enum operand_type { immediate, registr, address,labl };
 

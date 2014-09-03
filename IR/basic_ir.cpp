@@ -6,11 +6,12 @@
 #include <set>
 #include "./BasicBlock.h"
 #include <cstring>
+#include <algorithm>
 //#include "./Function.h"
 using namespace std;
 BasicBlock demio(1);
 
-string global_opcodes[] = {"ld","st","mov","add","sub","mul","div","jmp","cmp" };
+string global_opcodes[] = {"ld","st","mov","add","sub","mul","dv","jmp","cmp" };
 //std::vector<> v;
 std::vector<string> symbol_table;
 int src_size[8] = {1,1,1,2,2,2,1,1};
@@ -330,54 +331,92 @@ void program::createDFA()
 {
     vector<forwardEdge> forwardEdgeTable;
     // list<BasicBlock*>::iterator first_block = codeBlocks.begin();
-    cout<<"\n\n Basic block size:"<<codeBlocks.size();
+    //cout<<"\n\n Basic block size:"<<codeBlocks.size();
     //cout<<"\n\n\nSize:"<<(*first_block)->get_size();
     BasicBlock *binit = new BasicBlock(codeBlocks.size());
     codeBlocks.push_back(binit);
-    
+    vector<string> blocksToBeCreated;    
     bool prevjmp =false; 
     for(list<Instruction>::iterator i= src_program.begin(); i!= src_program.end();i++)
     {
         cout<<"\nOpcode:"<<(*i).get_opcode();        
         cout<<(*i).islabelPresent();
-        if((*i).islabelPresent()|| prevjmp)
+        if(prevjmp )
         {
-            cout<<"i\nNew block created..";
+            //cout<<"i\nNew block created..";
             prevjmp=false;
             BasicBlock *bnew = new BasicBlock(codeBlocks.size());
             codeBlocks.push_back(bnew); 
+            
             if( (*i).islabelPresent() )
-                labelTable[ (*i).getLabel() ] = *( codeBlocks.end()-- );
+            {
+                blocksToBeCreated.push_back((*i).getLabel());
+                
+             list<BasicBlock*>::iterator bbIterate = codeBlocks.begin(); 
+             advance(bbIterate,codeBlocks.size()-1);  
+             labelTable[ (*i).getLabel() ]  = *(bbIterate); 
+             cout<<"\nLabel:             "<<(*i).getLabel();   
+             //labelTable[ (*i).getLabel() ] = *( --codeBlocks.end() );
+            }
         }
+        else if((*i).islabelPresent() && std::find(blocksToBeCreated.begin(),blocksToBeCreated.end(), (*i).getLabel())!= blocksToBeCreated.end())
+        {
+             BasicBlock *bnew = new BasicBlock(codeBlocks.size());
+             codeBlocks.push_back(bnew);
 
+             list<BasicBlock*>::iterator bbIterate = codeBlocks.begin(); 
+             advance(bbIterate,codeBlocks.size()-1);  
+             labelTable[ (*i).getLabel() ]  = *(bbIterate);        
+             cout<<"\n\nLabel:      "<<(*i).getLabel(); 
+
+        }
+                                                                                                                                      
+        i->changeParent(*(--codeBlocks.end()));
 
         if((*i).get_opcode()==jmp)
         {
+            //cout<<"\nEntered jump";
             prevjmp =true;
             
             string label = (*(*i).get_srcs_head()).getLabel();
+           // cout<<"\nFound label";
+            //cout<<"\nLabelTable size:"<<labelTable.size();
             if(labelTable.find(label) !=labelTable.end())
             {
-                (labelTable[label])->addPredecessor((*i).getParent());
+              //  cout<<"\nUpdating label Table";
+                cout<<(labelTable.find(label))->second->getID();
+                BasicBlock* pred = (labelTable.find(label))->second; 
+                pred->addPredecessor((*i).getParent());
                 (*i).getParent()->addSuccessor((labelTable[label]));
             }
-              
+            else
+            {
+            cout<<"\nFuture Block created"; 
+            blocksToBeCreated.push_back((*i).getLabel());
+            //cout<<"\nCreating Edge";  
             forwardEdge edge;
             edge.label = label;
             edge.src = (*i).getParent();
             forwardEdgeTable.push_back(edge);
-           
+            }
             
         }
-        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination(),(*i).getsrc());
+        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination(),(*i).getsrc(),*(--codeBlocks.end()));
 
         list<BasicBlock*>::iterator lastBlock = codeBlocks.end();
         lastBlock--; 
         (*lastBlock)->insertInstruction(inew);
         //(*codeBlocks.end())->printhello();
         //(*codeBlocks.end())
-        //i->changeParent((codeBlocks.end()));
 
+    }
+ 
+    for(vector<forwardEdge>::iterator iter=forwardEdgeTable.begin();iter!=forwardEdgeTable.end();iter++)
+    {
+        cout<<"\nLabel"<<iter->label;
+         (labelTable[iter->label])->addPredecessor(iter->src);
+        (iter->src)->addSuccessor(labelTable[iter->label]); 
+       
     }
 }
 
