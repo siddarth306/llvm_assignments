@@ -29,5 +29,7 @@ class BasicBlock
     unsigned int get_size();
     unsigned int getID(){return Id;}
     void printhello();
+    void addSuccessor(BasicBlock* succ){successors.push_back(succ);}
+    void addPredecessor(BasicBlock* pred){predecessors.push_back(pred);}
 };
 

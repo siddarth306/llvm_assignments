@@ -5,6 +5,7 @@
 #include <vector>
 #include <set>
 #include "./BasicBlock.h"
+#include <cstring>
 //#include "./Function.h"
 using namespace std;
 BasicBlock demio(1);
@@ -12,7 +13,14 @@ BasicBlock demio(1);
 string global_opcodes[] = {"ld","st","mov","add","sub","mul","div","jmp","cmp" };
 //std::vector<> v;
 std::vector<string> symbol_table;
-int src_size[8] = {1,1,1,2,2,2,2,2};
+int src_size[8] = {1,1,1,2,2,2,1,1};
+
+struct forwardEdge
+    {
+        BasicBlock* src;
+        string label;
+    };
+
 
 struct reg_opt_entry
 {
@@ -22,6 +30,11 @@ struct reg_opt_entry
     int value;
 
 };
+
+label::label(string labelname)
+{
+    labelName = labelname;
+}
 
 operand_type Operands::get_type()
 {
@@ -50,7 +63,12 @@ Operands::Operands (operand_type op_type, int op_value)
     value = op_value;
 }
 Operands::Operands (operand_type op_type, const string &op_value)
-{	
+{
+
+    if(op_type == labl)
+    {
+        str = op_value;
+    }
     type =address;
     value = symbol_table.size();
     symbol_table.push_back(op_value);
@@ -114,25 +132,34 @@ Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_des
     destination = i_dest;
     srcs = i_srcs;
     Parent = inst_parent;
-
+    labelPresent =false;
 
 }
 
 Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs)
 {
+    cout<<"\nhi!!!!";
     opcode = instruct_opcode;
     destination = i_dest;
     srcs = i_srcs;
-//    Parent = inst_parent;
-
+    //    Parent = inst_parent;
+    labelPresent = false;
 
 }
 
-Instruction::Instruction(instruction_type instruct_opcode,const Operands &i_dest)
+Instruction::Instruction (instruction_type instruct_opcode,const Operands &i_dest,const vector<Operands> &i_srcs,string labelname)
 {
     opcode = instruct_opcode;
     destination = i_dest;
+    srcs = i_srcs;
+    //    Parent = inst_parent;
+    labelPresent = true;
+    // this->labelName.copy(labelName,labelName.size(),0);
+    this->labelName = labelname;
+    cout<<"\nLabel present";
 }
+
+
 
 Instruction::Instruction(){}
 
@@ -194,6 +221,7 @@ void Instruction::changeParent(BasicBlock *newParent)
 BasicBlock::BasicBlock(unsigned int Id)
 {
     this->Id = Id; 
+    
 }
 void BasicBlock::setTerminator(Instruction *terminate)
 {
@@ -220,6 +248,8 @@ void BasicBlock::insertInstruction(Instruction *new_instruction)
 void BasicBlock::printBlock ()
 {
     cout<<"\nBlock number:"<<Id;
+    cout<<"\npredecessor size:"<<this->predecessors.size();
+    cout<<"\nsuccessor size:"<<this->successors.size();
     for (list<Instruction*>::iterator i = instructions.begin(); i != instructions.end(); ++i)
     {
         (*i)->print_instruction();
@@ -298,23 +328,49 @@ BasicBlock* program::getBlock(int i)
 
 void program::createDFA()
 {
-   // list<BasicBlock*>::iterator first_block = codeBlocks.begin();
+    vector<forwardEdge> forwardEdgeTable;
+    // list<BasicBlock*>::iterator first_block = codeBlocks.begin();
     cout<<"\n\n Basic block size:"<<codeBlocks.size();
     //cout<<"\n\n\nSize:"<<(*first_block)->get_size();
     BasicBlock *binit = new BasicBlock(codeBlocks.size());
-    codeBlocks.push_back(binit); 
+    codeBlocks.push_back(binit);
+    
+    bool prevjmp =false; 
     for(list<Instruction>::iterator i= src_program.begin(); i!= src_program.end();i++)
     {
-                cout<<"\nOpcode:"<<(*i).get_opcode();        
-        if((*i).get_opcode()== jmp)
+        cout<<"\nOpcode:"<<(*i).get_opcode();        
+        cout<<(*i).islabelPresent();
+        if((*i).islabelPresent()|| prevjmp)
         {
-            cout<<"hello";
-
+            cout<<"i\nNew block created..";
+            prevjmp=false;
             BasicBlock *bnew = new BasicBlock(codeBlocks.size());
             codeBlocks.push_back(bnew); 
+            if( (*i).islabelPresent() )
+                labelTable[ (*i).getLabel() ] = *( codeBlocks.end()-- );
         }
-        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination());
-   
+
+
+        if((*i).get_opcode()==jmp)
+        {
+            prevjmp =true;
+            
+            string label = (*(*i).get_srcs_head()).getLabel();
+            if(labelTable.find(label) !=labelTable.end())
+            {
+                (labelTable[label])->addPredecessor((*i).getParent());
+                (*i).getParent()->addSuccessor((labelTable[label]));
+            }
+              
+            forwardEdge edge;
+            edge.label = label;
+            edge.src = (*i).getParent();
+            forwardEdgeTable.push_back(edge);
+           
+            
+        }
+        Instruction *inew = new Instruction((*i).get_opcode(),(*i).get_destination(),(*i).getsrc());
+
         list<BasicBlock*>::iterator lastBlock = codeBlocks.end();
         lastBlock--; 
         (*lastBlock)->insertInstruction(inew);
